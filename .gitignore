@@ -57,4 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
->>>>>>> 4a92a556dc3cb7b180b17bd691858e52032d3abc
+# vscode specific
+.vscode/
+.chrome/
