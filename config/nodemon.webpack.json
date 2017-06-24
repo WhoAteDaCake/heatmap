@@ -1,0 +1,17 @@
+{
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules"
+  ],
+  "watch": [
+    "server",
+		"config"
+  ],
+	"exec": "node server/index.js",
+  "env": {
+    "NODE_ENV": "development",
+		"DEBUG": "server",
+		"DEBUG_COLORS": true
+  },
+  "ext": "js json"
+}
