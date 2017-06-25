@@ -7,6 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BabiliPlugin = require('babili-webpack-plugin');
 
 const { PROD, DEV } = project.globals;
+const { app: appDir } = project.path;
 /*  Main */
 const webpackConfig = {
   entry: [
@@ -31,7 +32,18 @@ const webpackConfig = {
 		}),
   ],
 	devtool: DEV ? 'source-map' : false,
+  resolve: {
+    alias: {
+      components: path.resolve(appDir,'components'),
+      config: path.resolve(appDir,'config'),
+      actions: path.resolve(appDir,'actions'),
+      reducers: path.resolve(appDir,'reducers'),
+      actions: path.resolve(appDir,'actions'),
+      utilities: path.resolve(appDir,'utilities'),
+    }
+  }
 };
+console.log(path.join(appDir,'actions'));
 /*  Babel */
 debug('Adding babel loader');
 const babelConfig = {

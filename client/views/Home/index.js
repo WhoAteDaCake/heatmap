@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addLike } from 'actions/index.js';
 
 class Home extends Component {
+	updateCount = () => {
+		this.props.addLike();
+	}
   render() {
+		const { likes } = this.props.user;
 		return (
-			<div>Home page</div>
+			<div className="home">
+				<div>Home page | Likes: {likes}</div>
+				<button onClick={this.updateCount}>Like</button>
+			</div>
 		);
   }
 }
-export default Home;
+const mapDispatchToProps = dispatch => ({
+	addLike: addLike(dispatch),
+});
+const conenctedClass = connect(state => ({ user: state.user }), mapDispatchToProps)(Home);
+export default conenctedClass;

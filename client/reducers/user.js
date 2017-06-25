@@ -2,7 +2,7 @@ import * as types from '../config/actionTypes';
 
 function add(state, action) {
 	return Object.assign(state, {
-		loading: true,
+		likes: state.likes + action.likes,
 	});
 }
 
@@ -13,7 +13,6 @@ export default {
 	},
 	initialState: {
 		token: 'fakeToken',
-		users: [],
-		// data: {},
+		likes: 0,
 	},
 };
