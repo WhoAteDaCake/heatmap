@@ -1,4 +1,4 @@
-import * as types from 'config/actionTypes';
+import * as types from 'constants/actionTypes';
 
 export function addLike(dispatch) {
 	return () => {

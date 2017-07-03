@@ -1,4 +1,4 @@
-import * as types from '../config/actionTypes';
+import * as types from 'constants/actionTypes';
 
 function add(state, action) {
 	return Object.assign(state, {

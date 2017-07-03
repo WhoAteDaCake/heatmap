@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import applyReducer from '../utilities/applyReducer';
+import applyReducer from 'helpers/applyReducer';
 
 import user from './user';
 

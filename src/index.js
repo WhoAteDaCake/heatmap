@@ -28,3 +28,8 @@ if (process.env.NODE_ENV === 'development' && module.hot) {
 }
 
 render();
+if (process.env.NODE_ENV === 'development') {
+	localStorage.debug = 'worker:*';
+	const debug = require('debug')('worker:main');
+	debug('Hello');
+}

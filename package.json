@@ -21,8 +21,7 @@
     "shortid": "^2.2.8",
     "webpack": "^2.6.1",
     "webpack-dev-middleware": "^1.10.2",
-    "webpack-hot-middleware": "^2.18.0",
-    "textstore-client": "git+ssh://git@bitbucket.org/spotlightdatateam/textstore_node_client.git#v0.1.2"
+    "webpack-hot-middleware": "^2.18.0"
   },
   "scripts": {
     "build:js": "webpack --config config/webpack.config.js",
@@ -57,8 +56,9 @@
         "command": "concurrently \" npm run build:js \" \" node server/index.js \"",
         "env": {
             "NODE_ENV": "production",
-            "DEBUG": "DEBUG=server*,webpack*",
-            "DEBUG_COLORS": true
+            "DEBUG": "server:*,webpack:*",
+            "DEBUG_COLORS": true,
+            "HOST": "localhost"
         }
     },
     "build:dev": {

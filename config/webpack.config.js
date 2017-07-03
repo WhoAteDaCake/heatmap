@@ -1,12 +1,19 @@
 const project = require('./project.config.js');
 
 const path = require('path');
-const debug = require('debug')('webpack');
+const debug = require('debug')('webpack:main');
 const webpack = require('webpack');
 const BabiliPlugin = require("babili-webpack-plugin");
 
 const { PROD, DEV } = project.globals;
 const { app: appDir } = project.path;
+
+function alias(arr) {
+  const alt = {};
+  arr.map(val => (alt[val] = path.resolve(appDir,val)))
+  return alt;
+}
+
 /*  Main */
 const webpackConfig = {
   entry: [
@@ -35,18 +42,10 @@ const webpackConfig = {
         HOST: JSON.stringify(process.env.HOST),
 			},
 		}),
-    new BabiliPlugin(),
   ],
 	devtool: DEV ? 'source-map' : false,
   resolve: {
-    alias: {
-      components: path.resolve(appDir,'components'),
-      config: path.resolve(appDir,'config'),
-      actions: path.resolve(appDir,'actions'),
-      reducers: path.resolve(appDir,'reducers'),
-      actions: path.resolve(appDir,'actions'),
-      utilities: path.resolve(appDir,'utilities'),
-    }
+    alias: {}
   }
 };
 /*	Hot-loader */
@@ -59,5 +58,16 @@ if (PROD) {
   debug('Adding babili to minify')
   webpackConfig.plugins.push(new BabiliPlugin());
 }
-
+/* Alias list */
+debug('Adding alias')
+webpackConfig.resolve.alias = alias([
+  'actions',
+  'constants',
+  'components',
+  'containers',
+  'helpers',
+  'reducers',
+  'routes',
+  'store',
+]);
 module.exports = webpackConfig;
