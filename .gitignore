@@ -60,3 +60,7 @@ typings/
 # vscode specific
 .vscode/
 .chrome/
+
+#yarn
+yarn-error.log
+yarn.lock
