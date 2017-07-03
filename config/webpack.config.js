@@ -3,7 +3,6 @@ const project = require('./project.config.js');
 const path = require('path');
 const debug = require('debug')('webpack');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BabiliPlugin = require('babili-webpack-plugin');
 
 const { PROD, DEV } = project.globals;
@@ -28,6 +27,7 @@ const webpackConfig = {
 		new webpack.DefinePlugin({
 			'process.env': {
 				NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        HOST: JSON.stringify(process.env.HOST),
 			},
 		}),
   ],
@@ -43,7 +43,6 @@ const webpackConfig = {
     }
   }
 };
-console.log(path.join(appDir,'actions'));
 /*  Babel */
 debug('Adding babel loader');
 const babelConfig = {
@@ -58,28 +57,5 @@ if (DEV) {
 	debug('Adding webpack-hot-middleware');
 	webpackConfig.entry.unshift('webpack-hot-middleware/client');
 }
-// /*  Sass */
-// const extractSass = new ExtractTextPlugin({
-//   filename: 'mai.css',
-//   disable: project.globals.DEV,
-//   allChunks: true
-// });
 
-// webpackConfig.module.rules.push({
-//   test: [/\.scss$/,/\.css$/],
-//   use: extractSass.extract({
-//     use: [
-//       { loader: 'css-loader'},
-//       { loader: 'sass-loader'}
-//     ],
-//     fallback: 'style-loader' // use style-loader in development
-//   })
-// });
-
-// if(PROD) {
-//   debug('Extracting css to external file');
-//     webpackConfig.plugins.push(
-//         extractSass
-//     );
-// }
 module.exports = webpackConfig;

@@ -24,9 +24,8 @@ config.globals = { NODE_ENV, DEV, PROD, TEST };
  * Path configuration
  */
 const pathConf = {
-	app: base(['client']),
+	app: base(['src']),
 	server: base(['server']),
-	css: base(['sass']),
 	out: base(['public']),
 	base: base(['']),
 };
@@ -51,8 +50,6 @@ config.server = server;
  */
 const app = {
 	entry: base(['index.js'], [config.path.app]),
-	html: base(['index.html'], [config.path.out]),
-	css: base(['app.css'], [config.path.css]),
 };
 config.app = app;
 

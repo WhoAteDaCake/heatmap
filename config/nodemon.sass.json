@@ -1,8 +1,0 @@
-{
-	"watch": [
-		"sass"
-	],
-	"exec": "yarn build:css",
-	"ext": "scss",
-	"verbose": true
-}

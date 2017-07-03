@@ -22,8 +22,8 @@
   },
   "scripts": {
     "build:js--prod": " webpack --config config/webpack.config.js",
-    "watch:server": "nodemon --config config/nodemon.webpack.json",
-    "prod": "DEBUG=server*,webpack* NODE_ENV=production concurrently \" npm run build:js--prod \" \" node server/index.js \" \" yarn build:css \" ",
+    "watch:server": "DEBUG=server*,webpack* nodemon --config config/nodemon.webpack.json",
+    "prod": "DEBUG=server*,webpack* NODE_ENV=production concurrently \" npm run build:js--prod \" \" node server/index.js \" ",
     "dev": "npm run watch:server"
   },
   "devDependencies": {
