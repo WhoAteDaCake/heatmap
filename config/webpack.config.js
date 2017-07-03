@@ -3,7 +3,7 @@ const project = require('./project.config.js');
 const path = require('path');
 const debug = require('debug')('webpack');
 const webpack = require('webpack');
-const BabiliPlugin = require('babili-webpack-plugin');
+const BabiliPlugin = require("babili-webpack-plugin");
 
 const { PROD, DEV } = project.globals;
 const { app: appDir } = project.path;
@@ -18,7 +18,12 @@ const webpackConfig = {
     publicPath: '/',
   },
   module: {
-      rules: [],
+      rules: [{
+        test: /\.js$/,
+        include: project.path.app,
+        exclude: /node_modules/,
+        use: [{ loader: 'babel-loader' }],
+      }],
   },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
@@ -30,6 +35,7 @@ const webpackConfig = {
         HOST: JSON.stringify(process.env.HOST),
 			},
 		}),
+    new BabiliPlugin(),
   ],
 	devtool: DEV ? 'source-map' : false,
   resolve: {
@@ -43,19 +49,15 @@ const webpackConfig = {
     }
   }
 };
-/*  Babel */
-debug('Adding babel loader');
-const babelConfig = {
-  test: /\.js$/,
-  include: project.path.app,
-  exclude: /node_modules/,
-  use: [{ loader: 'babel-loader' }],
-};
-webpackConfig.module.rules.push(babelConfig);
 /*	Hot-loader */
 if (DEV) {
 	debug('Adding webpack-hot-middleware');
 	webpackConfig.entry.unshift('webpack-hot-middleware/client');
+}
+/* Babili */
+if (PROD) {
+  debug('Adding babili to minify')
+  webpackConfig.plugins.push(new BabiliPlugin());
 }
 
 module.exports = webpackConfig;

@@ -1,9 +1,4 @@
 {
 	"presets" : ["stage-2","react","es2016","flow"],
 	"plugins": ["transform-class-properties"],
-	"env": {
-		"production": {
-			"presets": ["babili"]
-		}
-	}
 }
