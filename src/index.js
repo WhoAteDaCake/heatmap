@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 // @flow
+=======
+/* @flow */
+>>>>>>> Stashed changes
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
