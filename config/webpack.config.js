@@ -29,7 +29,10 @@ const webpackConfig = {
         test: /\.js$/,
         include: project.path.app,
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader' }],
+        use: [
+          { loader: 'eslint-loader' },
+          { loader: 'babel-loader' },
+        ],
       }],
   },
   plugins: [

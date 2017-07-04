@@ -1,10 +1,11 @@
 {
   "parser": "babel-eslint",
+  "plugins": ["flowtype"],
   "env": {
     "browser": true,
     "node": true
   },
-  "extends": ["airbnb"],
+  "extends": ["airbnb", ],
   "rules": {
 	  "no-console": 0,
 	  "eol-last": 0,
@@ -21,5 +22,6 @@
 		"react/no-did-mount-set-state": 0, // Should be removed as it's opposite of react should do
 		"import/no-extraneous-dependencies": 0,// Because of webpack alias
 		"comma-dangle": 0// Will cause warnings when breaking line in function arguments
+		// "flowtype-errors/show-errors": 2
   }
 }

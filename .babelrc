@@ -1,4 +1,4 @@
 {
-	"presets" : ["stage-2","react","es2016","flow"],
-	"plugins": ["transform-class-properties"],
+	"presets" : ["stage-2","react","es2016", "flow"],
+	"plugins": ["transform-class-properties", "transform-flow-strip-types"],
 }
