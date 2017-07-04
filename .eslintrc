@@ -1,27 +1,25 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["flowtype"],
   "env": {
     "browser": true,
     "node": true
   },
-  "extends": ["airbnb", ],
+  "extends": ["airbnb", "plugin:flowtype/recommended"],
+  "plugins": ["flowtype"],
   "rules": {
-	  "no-console": 0,
-	  "eol-last": 0,
-	  "no-tabs": 0,
-	  "indent": 0,
-		"no-unused-vars": 0,
-		"import/prefer-default-export": 0,
-		"react/jsx-filename-extension": 0,
-		"global-require": 0,
-		"react/jsx-indent-props": 0,
-		"react/jsx-indent": 0,
-		"import/no-unresolved": 0,
-		"import/extensions": 0,
-		"react/no-did-mount-set-state": 0, // Should be removed as it's opposite of react should do
-		"import/no-extraneous-dependencies": 0,// Because of webpack alias
-		"comma-dangle": 0// Will cause warnings when breaking line in function arguments
-		// "flowtype-errors/show-errors": 2
+    "no-console": 0,
+    "eol-last": 0,
+    "no-unused-vars": 0,
+    "import/prefer-default-export": 0,
+    "react/jsx-filename-extension": 0,
+    "global-require": 0,
+    "react/jsx-indent-props": 0,
+    "react/jsx-indent": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "react/no-did-mount-set-state": 0, // Should be removed as it's opposite of react should do
+    "import/no-extraneous-dependencies": 0,// Because of webpack alias
+    "comma-dangle": 0,// Will cause warnings when breaking line in function arguments
+    "no-underscore-dangle": 0 // For lodash, underscore, ramda
   }
 }

@@ -4,8 +4,8 @@
  * @return {Promise}
  */
 function till(p) {
-	return p
-		.then(resp => ({ error: null, resp }))
-		.catch(error => ({ error, resp: null }));
+  return p
+    .then(resp => ({ error: null, resp }))
+    .catch(error => ({ error, resp: null }));
 }
 export default till;

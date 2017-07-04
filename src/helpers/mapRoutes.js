@@ -10,14 +10,14 @@ import shortid from 'shortid';
  * @return {ReactElement}
  */
 function RouteWithSubRoutes(route) {
-	return (
-		<Route
-			path={route.path}
-			render={props => (
-				<route.component {...props} routes={route.routes} />
-			)}
-		/>
-	);
+  return (
+    <Route
+      path={route.path}
+      render={props => (
+        <route.component {...props} routes={route.routes} />
+      )}
+    />
+  );
 }
 /**
  * Will map route from route object
@@ -25,9 +25,9 @@ function RouteWithSubRoutes(route) {
  * @return {Routes}
  */
 function mapRoute(route) {
-	return (
-		<RouteWithSubRoutes key={shortid.generate()} {...route} />
-	);
+  return (
+    <RouteWithSubRoutes key={shortid.generate()} {...route} />
+  );
 }
 /**
  * Will map all routes from routes object
@@ -35,7 +35,7 @@ function mapRoute(route) {
  * @return {Routes}
  */
 function mapRoutes(routes) {
-	return routes.map(mapRoute);
+  return routes.map(mapRoute);
 }
 
 export default mapRoutes;

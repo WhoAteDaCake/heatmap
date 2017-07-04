@@ -3,6 +3,7 @@
 [include]
 
 [libs]
+./src/**
 
 [options]
 module.name_mapper='^shared\(\/?.*\)$' -> '<PROJECT_ROOT>/src/shared/\1'

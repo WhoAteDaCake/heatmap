@@ -19,22 +19,3 @@ function render() {
   , MOUNT_NODE);
 }
 
-function add(int) {
-  return 1 + int;
-}
-console.log(add('as'));
-// if (process.env.NODE_ENV === 'development' && module.hot) {
-// 	module.hot.accept('./containers/App', () => render());
-// 	module.hot.accept('./reducers', () => {
-// 		console.log('Accepted');
-// 		store.replaceReducer(require('./reducers').default);
-// 		render();
-// 	});
-// }
-
-// render();
-// if (process.env.NODE_ENV === 'development') {
-// 	localStorage.debug = 'worker:*';
-// 	const debug = require('debug')('worker:main');
-// 	debug('Hello');
-// }

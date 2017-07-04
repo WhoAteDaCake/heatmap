@@ -6,11 +6,11 @@
  *   @param {string} key
  */
 function checkKey(error) {
-	return (object, key) => {
-			if (typeof object[key] === 'undefined') {
-				throw Error(`${error} ${key} undefined`);
-			}
-	};
+  return (object, key) => {
+    if (typeof object[key] === 'undefined') {
+      throw Error(`${error} ${key} undefined`);
+    }
+  };
 }
 /**
  * Creates a reducer middleware
@@ -23,12 +23,12 @@ function checkKey(error) {
  *   @return {object}
  */
 function createReducer(cases, initialState = {}) {
-	return (state = initialState, action) => {
-		if (typeof cases[action.type] === 'undefined') {
-			return state;
-		}
-		return cases[action.type]({ ...state }, action);
-	};
+  return (state = initialState, action) => {
+    if (typeof cases[action.type] === 'undefined') {
+      return state;
+    }
+    return cases[action.type]({ ...state }, action);
+  };
 }
 /**
  * Returns fixated reducer
@@ -36,13 +36,13 @@ function createReducer(cases, initialState = {}) {
  * @return {object}
  */
 function applyReducer(reducer) {
-	const checker = checkKey(`In applyReducer reducer: ${JSON.stringify(reducer)}`);
+  const checker = checkKey(`In applyReducer reducer: ${JSON.stringify(reducer)}`);
 
-	checkKey(reducer, 'key');
-	checkKey(reducer, 'cases');
-	return {
-		[reducer.key]: createReducer(reducer.cases, reducer.initialState),
-	};
+  checkKey(reducer, 'key');
+  checkKey(reducer, 'cases');
+  return {
+    [reducer.key]: createReducer(reducer.cases, reducer.initialState),
+  };
 }
 
 export default applyReducer;
