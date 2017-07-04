@@ -64,3 +64,6 @@ typings/
 #yarn
 yarn-error.log
 yarn.lock
+
+#flow-types
+flow-typed
