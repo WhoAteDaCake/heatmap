@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 // @flow
-=======
-/* @flow */
->>>>>>> Stashed changes
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
@@ -14,17 +10,17 @@ import store from './store';
 const MOUNT_NODE = document.getElementById('root');
 
 function render() {
-	ReactDom.render(
-		<Provider store={store}>
-			<Router>
-				<App />
-			</Router>
-		</Provider>
-	, MOUNT_NODE);
+  ReactDom.render(
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
+  , MOUNT_NODE);
 }
 
 function add(int) {
-	return 1 + int;
+  return 1 + int;
 }
 console.log(add('as'));
 // if (process.env.NODE_ENV === 'development' && module.hot) {
