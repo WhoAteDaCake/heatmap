@@ -18,7 +18,7 @@ yarn
 
 ### Flow
 
-Flow is used as a static type checker to prevent bugs and speed up development
+[Flow](https://flow.org/) is used as a static type checker to prevent bugs and speed up development
 
 ```
 yarn global add flow-bin
@@ -31,6 +31,9 @@ Flow plugins can be useful as they allow for in-editor linting.
 ### ESLint
 
 ESLint is used as a linter for coding convention, the linter should run automatically as you work on the project. However it is recommended to use a plugin to get in-editor linting.
+
+[Config](https://github.com/airbnb/javascript)
+
 
 
 ## Editorconfig
@@ -61,7 +64,9 @@ Editorconfig is also being used in this project to maintain consistency, again a
 │   └── index.html
 ├── server
 │   └── index.js
+├── tests
 ├── src
+│   ├── styles
 │   ├── actions
 │   ├── constants
 │   ├── containers
@@ -78,4 +83,39 @@ Editorconfig is also being used in this project to maintain consistency, again a
 ├── .gitignore
 ├── .flowconfig
 └── yarn.lock
+```
+
+# Coding standards
+
+## Helpers rule
+If logic does not depend on either state or props, functions should be extracted into a helper file inside `src/helpers`.
+
+## Bind
+React components should not contain `.bind(this)` method all of the functions should be bound using arrow functions. 
+
+Instead of: 
+
+```javascript
+updateCount() {
+    this.props.addLike();
+}
+```
+
+Write:
+
+```javascript
+updateCount = () => {
+    this.props.addLike();
+}
+```
+
+## Naming conventions
+All components should be named with Initial uppercase character on a file with the same name as the component, this also ensures a single component per file.
+
+File Header.js:
+
+```javascript
+class Header extends React.Component{
+    //...
+}
 ```
