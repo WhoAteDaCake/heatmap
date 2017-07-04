@@ -7,13 +7,13 @@
   ],
   "watch": [
     "server",
-		"config"
+    "config"
   ],
-	"exec": "node server/index.js",
+  "exec": "node server/index.js",
   "env": {
     "NODE_ENV": "development",
-		"DEBUG": "server*,webpack*",
-		"DEBUG_COLORS": true,
+    "DEBUG": "server*,webpack*",
+    "DEBUG_COLORS": true,
     "HOST": "localhost"
   },
   "ext": "js json"

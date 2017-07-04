@@ -5,8 +5,8 @@ import mapRoutes from './mapRoutes';
 
 
 export {
-	applyReducer,
-	fetchWrap,
-	till,
-	mapRoutes,
+  applyReducer,
+  fetchWrap,
+  till,
+  mapRoutes,
 };

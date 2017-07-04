@@ -11,29 +11,29 @@ const hotMiddleWare = require('webpack-hot-middleware');
 const app = express();
 
 function publicFile(res, file) {
-	return res.sendFile(path.join(__dirname, '../public', file));
+  return res.sendFile(path.join(__dirname, '../public', file));
 }
 
 if (project.globals.DEV) {
-	const webpackConf = require('../config/webpack.config.js');
-	const compiler = webpack(webpackConf);
+  const webpackConf = require('../config/webpack.config.js');
+  const compiler = webpack(webpackConf);
 
-	app.use(devMiddleWare(compiler, {
-		hot: true,
-		publicPath: webpackConf.output.publicPath,
-		reload: true,
-		noInfo: true,
-		stats: {
-			colors: true,
-		},
-	}));
-	app.use(hotMiddleWare(compiler));
+  app.use(devMiddleWare(compiler, {
+    hot: true,
+    publicPath: webpackConf.output.publicPath,
+    reload: true,
+    noInfo: true,
+    stats: {
+      colors: true,
+    },
+  }));
+  app.use(hotMiddleWare(compiler));
 
-	app.use((req, res, next) => {
-		req.originalUrl = req.originalUrl.replace(/\?.*/, '');
-		debug('File request: %s', req.originalUrl);
-		next();
-	});
+  app.use((req, res, next) => {
+    req.originalUrl = req.originalUrl.replace(/\?.*/, '');
+    debug('File request: %s', req.originalUrl);
+    next();
+  });
 }
 
 app.get(/^.*\.((?!hot-update).)*\..*$/, (req, res) => publicFile(res, req.originalUrl));

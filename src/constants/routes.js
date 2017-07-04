@@ -2,9 +2,9 @@ import Home from 'routes/Home';
 
 const routes = [
   {
-		path: '/',
+    path: '/',
     component: Home,
-		exact: true,
+    exact: true,
   },
 ];
 

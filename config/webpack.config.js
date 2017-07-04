@@ -30,8 +30,8 @@ const webpackConfig = {
         include: project.path.app,
         exclude: /node_modules/,
         use: [
-          { loader: 'eslint-loader' },
           { loader: 'babel-loader' },
+          { loader: 'eslint-loader' },
         ],
       }],
   },
@@ -39,22 +39,22 @@ const webpackConfig = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-		new webpack.DefinePlugin({
-			'process.env': {
-				NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         HOST: JSON.stringify(process.env.HOST),
-			},
-		}),
+      },
+    }),
   ],
-	devtool: DEV ? 'source-map' : false,
+  devtool: DEV ? 'source-map' : false,
   resolve: {
     alias: {}
   }
 };
-/*	Hot-loader */
+/*  Hot-loader */
 if (DEV) {
-	debug('Adding webpack-hot-middleware');
-	webpackConfig.entry.unshift('webpack-hot-middleware/client');
+  debug('Adding webpack-hot-middleware');
+  webpackConfig.entry.unshift('webpack-hot-middleware/client');
 }
 /* Babili */
 if (PROD) {
