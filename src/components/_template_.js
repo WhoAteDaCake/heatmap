@@ -1,9 +1,12 @@
 // @flow
 import React from 'react';
 import PropTypes from 'prop-types';
-import headerStyle from '../styles/Header';
+// Change style import
+import style from '../styles/_template_';
 
-export default class Header extends React.Component {
+// Change class name
+export default class Template extends React.Component {
+  // Change propTypes and defaults
   static propTypes = {
     name: PropTypes.string
   }
@@ -12,7 +15,7 @@ export default class Header extends React.Component {
   }
   render() {
     return (
-      <div id="header" style={headerStyle}>
+      <div id="header" style={style}>
         <h1> Hello {this.props.name} </h1>
       </div>
     );

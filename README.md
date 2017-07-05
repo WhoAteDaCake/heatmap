@@ -158,3 +158,7 @@ var compact = function(xs) {
   });
 };
 ```
+
+
+# Templates
+For components and simple stylesheets we have a **_template_.js** both in `src/components` and `stc/styles` start with those for the flow initialiser, prop type definitions and defaults.
