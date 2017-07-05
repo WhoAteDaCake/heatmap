@@ -73,5 +73,6 @@ webpackConfig.resolve.alias = alias([
   'reducers',
   'routes',
   'store',
+  'styles',
 ]);
 module.exports = webpackConfig;

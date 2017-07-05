@@ -3,7 +3,7 @@
 import { createStyleSheet as styleSheet, withStyles as wrapStyles } from 'material-ui/styles';
 
 export function createStyleSheet(name: string, fn: Function) {
-  return styleSheet('MyLink', fn);
+  return styleSheet(name, fn);
 }
 
 export function withStyles(sheet: Object) {
