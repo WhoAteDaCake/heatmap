@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './containers/App';
 import store from './store';
 
-const MOUNT_NODE = document.getElementById('root');
+const MOUNT_NODE: HTMLElement | null = document.getElementById('root');
 
 function render() {
   ReactDom.render(
@@ -19,3 +19,4 @@ function render() {
   , MOUNT_NODE);
 }
 
+render();
