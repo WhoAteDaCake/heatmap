@@ -1,4 +1,4 @@
 export default {
-  margin: '10px',
-  borderBotton: '2px solid #999'
+  padding: '10px',
+  borderBottom: '1px solid #ccc'
 };

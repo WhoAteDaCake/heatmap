@@ -13,6 +13,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <div id="header" style={headerStyle}>
+        <i className="material-icons">menu</i>
         <h1> Hello {this.props.name} </h1>
       </div>
     );
