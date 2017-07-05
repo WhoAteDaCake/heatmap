@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import PropTypes from 'prop-types';
-import style from '../styles/Header.js'
+import style from '../styles/Header.js';
 
 export default class Header extends React.Component {
   static propTypes = {
