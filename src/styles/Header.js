@@ -1,5 +1,4 @@
 export default {
   margin: '10px',
-  backgroundColor: 'black',
-  color: 'white'
+  borderBotton: '2px solid #999'
 };
