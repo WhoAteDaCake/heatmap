@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// $FlowIgnore because we are using webpack
 import { addLike } from 'actions/index.js';
 
 import type { Dispatch } from 'redux';

@@ -3,6 +3,9 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import theme from 'constants/theme';
 
 import App from './containers/App';
 import store from './store';
@@ -13,7 +16,9 @@ function render() {
   ReactDom.render(
     <Provider store={store}>
       <Router>
-        <App />
+        <MuiThemeProvider theme={theme}>
+          <App />
+        </MuiThemeProvider>
       </Router>
     </Provider>
   , MOUNT_NODE);
