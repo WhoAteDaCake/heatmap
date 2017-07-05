@@ -7,7 +7,7 @@
     "build:js": "webpack --config config/webpack.config.js",
     "prod": "better-npm-run build:prod",
     "test": "jest --config jest.json && sh flowlint.sh",
-    "doc": "documentation build src/** -f html -o docs",
+    "doc": "documentation build src/** -f html -o docs && google-chrome docs/index.html",
     "dev": "better-npm-run build:dev"
   },
   "betterScripts": {
