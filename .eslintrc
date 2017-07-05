@@ -19,6 +19,7 @@
     "react/prefer-stateless-function": 1,
     "import/no-unresolved": 0,
     "import/extensions": 0,
+    "indent": 1,
     "react/no-did-mount-set-state": 0, // Should be removed as it's opposite of react should do
     "import/no-extraneous-dependencies": 0,// Because of webpack alias
     "comma-dangle": 0,// Will cause warnings when breaking line in function arguments
