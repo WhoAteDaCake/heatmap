@@ -1,11 +1,9 @@
+// @flow
+
 /**
  * Will check if an object contains given key
- * @param {string} error
- * @return {function}
- *   @param {object} object
- *   @param {string} key
  */
-function checkKey(error) {
+function keyExists(error: string): (object: Object, key: string) => void {
   return (object, key) => {
     if (typeof object[key] === 'undefined') {
       throw Error(`${error} ${key} undefined`);
@@ -27,7 +25,7 @@ function createReducer(cases, initialState = {}) {
     if (typeof cases[action.type] === 'undefined') {
       return state;
     }
-    return cases[action.type]({ ...state }, action);
+    return cases[action.type](Object.assign({}, state), action);
   };
 }
 /**
@@ -35,11 +33,11 @@ function createReducer(cases, initialState = {}) {
  * @param {object} reducer
  * @return {object}
  */
-function applyReducer(reducer) {
-  const checker = checkKey(`In applyReducer reducer: ${JSON.stringify(reducer)}`);
+function applyReducer(reducer: Object) {
+  const checker = keyExists(`In applyReducer reducer: ${JSON.stringify(reducer)}`);
 
-  checkKey(reducer, 'key');
-  checkKey(reducer, 'cases');
+  checker(reducer, 'key');
+  checker(reducer, 'cases');
   return {
     [reducer.key]: createReducer(reducer.cases, reducer.initialState),
   };
