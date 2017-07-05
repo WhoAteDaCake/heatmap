@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+// $FlowIgnore
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import theme from 'constants/theme';
