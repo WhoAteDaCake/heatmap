@@ -19,6 +19,7 @@ class Header extends React.Component {
     console.log(this.props);
     return (
       <div id="header" className={this.props.classes.root}>
+        <i className="material-icons">menu</i>
         <h1> Hello {this.props.name} </h1>
       </div>
     );
