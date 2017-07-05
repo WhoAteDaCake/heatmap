@@ -37,6 +37,8 @@ if (project.globals.DEV) {
 }
 
 app.get(/^.*\.((?!hot-update).)*\..*$/, (req, res) => publicFile(res, req.originalUrl));
+app.get('/css/skeleton.css', (req, res) => publicFile(res, 'css/skeleton.css'));
+app.get('/css/normalize.css', (req, res) => publicFile(res, 'css/normalize.css'));
 app.get('/bundle.js', (req, res) => publicFile(res, 'bundle.js'));
 app.get('*', (req, res) => publicFile(res, 'index.html'));
 
