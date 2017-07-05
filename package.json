@@ -6,8 +6,7 @@
   "scripts": {
     "build:js": "webpack --config config/webpack.config.js",
     "prod": "better-npm-run build:prod",
-    "pretest": "sh flowlint.sh",
-    "test": "jest --config jest.json",
+    "test": "jest --config jest.json && sh flowlint.sh",
     "dev": "better-npm-run build:dev"
   },
   "betterScripts": {
