@@ -7,7 +7,7 @@ import shortid from 'shortid';
 /**
  * Will map route and sub-routes
  * @param {object} route
- * @return {ReactElement}
+ * @return {object}
  */
 function RouteWithSubRoutes(route) {
   return (
@@ -22,7 +22,7 @@ function RouteWithSubRoutes(route) {
 /**
  * Will map route from route object
  * @param {object} route
- * @return {Routes}
+ * @return {object}
  */
 function mapRoute(route) {
   return (
@@ -32,7 +32,7 @@ function mapRoute(route) {
 /**
  * Will map all routes from routes object
  * @param {object} route
- * @return {Routes}
+ * @return {object}
  */
 function mapRoutes(routes) {
   return routes.map(mapRoute);
