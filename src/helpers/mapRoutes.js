@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import {
   Route,
@@ -34,7 +35,7 @@ function mapRoute(route) {
  * @param {object} route
  * @return {object}
  */
-function mapRoutes(routes) {
+function mapRoutes(routes: Array<Route>) {
   return routes.map(mapRoute);
 }
 
