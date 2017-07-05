@@ -119,3 +119,42 @@ class Header extends React.Component{
     //...
 }
 ```
+
+## Code purity
+
+Helpers function should all be written as pure functions(no side effects). This allows for easier tests, and allows for cleaner more predictable code. Logic inside components should also be written as pure functions as much as possible.
+
+Don't:
+
+```javascript
+function printProps(){
+    console.log(this.props)
+}
+```
+
+Do:
+```javascript
+function printProps(props){
+    console.log(props)
+}
+```
+
+## Generic naming
+
+Having multiple names for the same concept is a common source of confusion in projects. There is also the issue of generic code. For instance, these two functions do exactly the same thing, but one feels infinitely more general and reusable:
+
+```javascript
+// specific to our current blog
+var validArticles = function(articles) {
+  return articles.filter(function(article) {
+    return article !== null && article !== undefined;
+  });
+};
+
+// vastly more relevant for future projects
+var compact = function(xs) {
+  return xs.filter(function(x) {
+    return x !== null && x !== undefined;
+  });
+};
+```

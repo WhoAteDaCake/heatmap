@@ -67,3 +67,6 @@ yarn.lock
 
 #flow-types
 flow-typed
+
+#documentation
+doc/
