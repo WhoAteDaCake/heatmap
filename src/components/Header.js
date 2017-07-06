@@ -6,12 +6,20 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleSidebar } from 'actions/sidebar';
 
+// $FlowIgnore flow bug
+import AppBar from 'material-ui/AppBar';
+// $FlowIgnore flow bug
+import Toolbar from 'material-ui/Toolbar';
+// $FlowIgnore flow bug
+import Typography from 'material-ui/Typography';
+// $FlowIgnore flow bug
+import Button from 'material-ui/Button';
+
 import Icon from 'components/Icon';
 import HeaderStyles from 'styles/Header';
 
 class Header extends React.Component {
   static propTypes = {
-    name: PropTypes.string,
     classes: PropTypes.shape({
       root: PropTypes.string,
       icon: PropTypes.string,
@@ -29,14 +37,21 @@ class Header extends React.Component {
     this.props.toggleSidebar(open ? 'close' : 'open');
   }
   render() {
+    const { classes } = this.props;
     return (
-      <div id="header" className={this.props.classes.root}>
-        <button onClick={this.toggle}>change</button>
-        <h1>
-          <Icon icon="menu" />
-          Hello {this.props.name}
-        </h1>
-      </div>
+      <AppBar position="static" className={classes.root} >
+        <Toolbar>
+          <a onClick={this.toggle} role="button" tabIndex={0} className={classes.icon}>
+            <Icon icon="menu" />
+          </a>
+          <Typography type="title" color="inherit" className={classes.text}>
+            Page
+          </Typography>
+          <Button color="contrast" className={classes.button}>
+            Login
+          </Button>
+        </Toolbar>
+      </AppBar>
     );
   }
 }

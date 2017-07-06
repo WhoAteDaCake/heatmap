@@ -14,6 +14,6 @@ export default {
     [SIDEBAR.CLOSE]: close,
   },
   initialState: {
-    open: true,
+    open: window.innerWidht > 480,
   },
 };
