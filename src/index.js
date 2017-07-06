@@ -7,11 +7,17 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import theme from 'constants/theme';
-
+import createDebugger from 'helpers/debug';
 import App from './containers/App';
 import store from './store';
 
+const debug = createDebugger('root:mount');
+
 const MOUNT_NODE: HTMLElement | null = document.getElementById('root');
+
+if (MOUNT_NODE === null) {
+  debug('Mount node is not a valid DOM element');
+}
 
 function render() {
   ReactDom.render(

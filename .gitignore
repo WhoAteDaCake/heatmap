@@ -69,7 +69,9 @@ yarn.lock
 flow-typed/npm/
 
 #documentation
-doc/
+docs/
 
 #ctags
 tags
+
+public/bundle.js

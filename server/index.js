@@ -45,5 +45,4 @@ app.get('*', (req, res) => publicFile(res, 'index.html'));
 app.listen(
   project.server.port,
   project.server.ip,
-  () => debug(`${project.server.ip} on port %d`, project.server.port)
-);
+  () => debug(`http://${project.server.ip}:${project.server.port}`));
