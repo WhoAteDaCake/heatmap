@@ -20,6 +20,7 @@ const styles = createStyleSheet('App', theme => ({
   },
   content: {
     display: 'flex',
+    flexDirection: 'column',
     width: '100%',
   },
 }));

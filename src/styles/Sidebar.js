@@ -18,7 +18,9 @@ export default createStyleSheet('sidebar', theme => ({
   list: {
     color: 'white !important',
     '& > h3': {
-      color: 'white'
+      color: 'white',
+      'letter-spacing': '0.1em',
+      fontFamily: '"Roboto", sans-serif',
     }
   },
   input: {

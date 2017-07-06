@@ -2,8 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'helpers/material';
-import style from 'styles/Sidebar';
+import { connect } from 'react-redux';
+import classnames from 'classnames';
+
 import Icon from 'components/Icon';
+import style from 'styles/Sidebar';
 // $FlowIgnore
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 // $FlowIgnore
@@ -15,14 +18,19 @@ class Sidebar extends React.Component {
       root: PropTypes.string,
       list: PropTypes.string,
     }).isRequired,
+    open: PropTypes.bool.isRequired,
   }
   static defaultProps = {
     name: 'pedro@spotlightdata.co.uk'
   }
   render() {
     const { classes } = this.props;
+    const mainClass = classnames({
+      [classes.root]: true,
+      [`${classes.root}--active`]: this.props.open,
+    });
     return (
-      <div className={classes.root}>
+      <div className={mainClass}>
         <img src="logoWhite.png" alt="Logo" className={classes.img} />
         <Input placeholder="Filter.." classes={{ input: classes.input, underline: classes.underline }} />
         <List className={classes.list}>
@@ -43,5 +51,9 @@ class Sidebar extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => state.sidebar;
+
 const styledClass = withStyles(style)(Sidebar);
-export default styledClass;
+const connectedClass = connect(mapStateToProps)(styledClass);
+export default connectedClass;
