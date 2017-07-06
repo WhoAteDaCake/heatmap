@@ -24,6 +24,7 @@
     "import/no-extraneous-dependencies": 0,// Because of webpack alias
     "comma-dangle": 0,// Will cause warnings when breaking line in function arguments
     "no-underscore-dangle": 0, // For lodash, underscore, ramda
-    "flowtype-errors/show-errors": 2
+    "flowtype-errors/show-errors": 2,
+    "no-debugger": 0,
   }
 }
