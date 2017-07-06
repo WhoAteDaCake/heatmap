@@ -32,13 +32,15 @@ class Header extends React.Component {
   static defaultProps = {
     name: ''
   }
-  toggle = () => {
+  toggle = (e) => {
+    e.preventDefault();
     const { open } = this.props.sidebar;
     this.props.toggleSidebar(open ? 'close' : 'open');
   }
   render() {
     const { classes } = this.props;
     const { open } = this.props.sidebar;
+    console.log(this.props);
     return (
       <AppBar position="static" className={classes.root} >
         <Toolbar>

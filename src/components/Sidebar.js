@@ -31,7 +31,7 @@ class Sidebar extends React.Component {
     });
     return (
       <div className={mainClass}>
-        <img src="logoWhite.png" alt="Logo" className={classes.img} />
+        <img src="/static/imgs/logo-white.png" alt="Logo" className={classes.img} />
         <Input placeholder="Filter.." classes={{ input: classes.input, underline: classes.underline }} />
         <List className={classes.list}>
           <ListItem button>
