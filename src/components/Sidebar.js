@@ -3,12 +3,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'helpers/material';
 import style from 'styles/Sidebar';
+import Icon from 'components/Icon';
+// $FlowIgnore
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 
 class Sidebar extends React.Component {
   static propTypes = {
     name: PropTypes.string,
     classes: PropTypes.shape({
       root: PropTypes.string,
+      list: PropTypes.string,
     }).isRequired,
   }
   static defaultProps = {
@@ -17,9 +21,22 @@ class Sidebar extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div id="header" className={classes.root}>
-        <h1> Sidebar </h1>
-        <h3> {this.props.name} </h3>
+      <div className={classes.root}>
+        <h1 style={{ marginLeft: '20px' }}> Nanowire </h1>
+        <List className={classes.list}>
+          <ListItem button>
+            <Icon icon="home" />
+            <ListItemText primary="Home" className={classes.list} />
+          </ListItem>
+          <ListItem button>
+            <Icon icon="folder" />
+            <ListItemText primary="Projects" className={classes.list} />
+          </ListItem>
+          <ListItem button>
+            <Icon icon="settings" />
+            <ListItemText primary="Settings" className={classes.list} />
+          </ListItem>
+        </List>
       </div>
     );
   }

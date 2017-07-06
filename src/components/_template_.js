@@ -20,7 +20,7 @@ class Template extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div id="header" className={classes.root}>
+      <div className={classes.root}>
         <h1> Hello {this.props.name} </h1>
       </div>
     );
