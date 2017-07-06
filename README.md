@@ -8,9 +8,8 @@ Installing yarn
 ```
 npm install yarn@0.27.5 -g
 ```
-
 Installing dependencies
-```
+``` 
 yarn 
 ```
 
@@ -167,3 +166,6 @@ For components and simple stylesheets we have a **_template_.js** both in `src/c
 # Icon Font
 
 The icon font used is [Google's material icon font](https://material.io/icons/) for reference use their icon font method.
+
+# Links
+[Material-ui](https://material-ui-1dab0.firebaseapp.com/) is used for react components
