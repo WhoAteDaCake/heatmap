@@ -18,12 +18,10 @@ class Icon extends React.Component {
     className: '',
   }
   render() {
-    const { classes, className } = this.props;
+    const { classes, className, icon } = this.props;
     const mainClass = classnames(className, classes.icon, 'material-icons');
     return (
-      <i className={mainClass}>
-        {this.props.icon}
-      </i>
+      <i className={mainClass}>{icon.replace(/\s/g, '_')}</i>
     );
   }
 }
