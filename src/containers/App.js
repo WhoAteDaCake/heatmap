@@ -13,15 +13,18 @@ import Sidebar from 'components/Sidebar';
 const styles = createStyleSheet('App', theme => ({
   root: {
     display: 'flex',
+    flexDirection: 'column',
     height: '100vh',
     padding: '0',
     boxOrient: 'horizontal',
     fontFamily: '"Roboto", sans-serif',
+    backgroundColor: theme.white[500],
   },
   body: {
     display: 'flex',
-    flexDirection: 'column',
     width: '100%',
+    height: '100%',
+    overflow: 'hidden',
   },
   content: {
     margin: '2em',
@@ -31,9 +34,9 @@ const styles = createStyleSheet('App', theme => ({
 function App({ classes }) {
   return (
     <div className={classes.root}>
-      <Sidebar />
+      <Header />
       <div className={classes.body} >
-        <Header />
+        <Sidebar />
         <div className={classes.content} >
           <Switch>
             {mapRoutes(routes)}

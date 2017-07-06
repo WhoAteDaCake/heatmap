@@ -2,8 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'helpers/material';
+import { filterByKey } from 'helpers/array';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
+import R from 'ramda';
+import shortid from 'shortid';
 
 import Icon from 'components/Icon';
 import style from 'styles/Sidebar';
@@ -11,6 +14,29 @@ import style from 'styles/Sidebar';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 // $FlowIgnore
 import Input from 'material-ui/Input/Input';
+
+const buttonList = [
+  {
+    name: 'Home',
+    icon: 'home',
+    link: '/',
+  },
+  {
+    name: 'Projects',
+    icon: 'folder',
+    link: '/projects',
+  },
+  {
+    name: 'Project 1',
+    icon: 'folder_open',
+    link: '/projects/hi',
+  },
+  {
+    name: 'Settings',
+    icon: 'settings',
+    link: '/settings',
+  }
+];
 
 class Sidebar extends React.Component {
   static propTypes = {
@@ -33,62 +59,31 @@ class Sidebar extends React.Component {
   }
 
   renderButton = (item, index) => {
-    if (item.link.split('/').length === 2) {
-      return (
-        <ListItem button key={index}>
-          <Icon icon={item.icon} />
-          <ListItemText primary={item.name} className={this.props.classes.list} />
-        </ListItem>
-      );
-    }
+    const { list, child } = this.props.classes;
+    const notChild = item.link.split('/').length === 2;
+
     return (
-      <ListItem button key={index} className={this.props.classes.child}>
+      <ListItem button key={shortid.generate()} className={notChild ? '' : child}>
         <Icon icon={item.icon} />
-        <ListItemText primary={item.name} className={this.props.classes.list} />
+        <ListItemText primary={item.name} className={list} />
       </ListItem>
     );
   }
-  ;
-
 
   render() {
-    const buttonList = [
-      {
-        name: 'Home',
-        icon: 'home',
-        link: '/',
-      },
-      {
-        name: 'Projects',
-        icon: 'folder',
-        link: '/projects',
-      },
-      {
-        name: 'Project 1',
-        icon: 'folder_open',
-        link: '/projects/hi',
-      },
-      {
-        name: 'Settings',
-        icon: 'settings',
-        link: '/settings',
-      }
-    ];
-    const { classes } = this.props;
+    const { classes, open } = this.props;
+    const { filterText } = this.state;
     const mainClass = classnames({
       [classes.root]: true,
-      [`${classes.root}--active`]: this.props.open,
+      [`${classes.root}--active`]: open,
     });
+
     return (
       <div className={mainClass}>
         <img src="/static/imgs/logo-white.png" alt="Logo" className={classes.img} />
         <Input onChange={this.search} placeholder="Filter.." classes={{ input: classes.input, underline: classes.underline }} />
         <List className={classes.list}>
-          {
-            buttonList
-            .filter(str => str.name.toUpperCase().includes(this.state.filterText.toUpperCase()))
-            .map(this.renderButton)
-          }
+          {R.map(this.renderButton, filterByKey(filterText, 'name', buttonList))}
         </List>
       </div>
     );
