@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'helpers/material';
+import routeToLabel from 'helpers/routeToLabel';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleSidebar } from 'actions/sidebar';
@@ -28,6 +29,9 @@ class Header extends React.Component {
       open: PropTypes.bool,
     }).isRequired,
     toggleSidebar: PropTypes.func.isRequired,
+    match: PropTypes.shape({
+      path: PropTypes.string,
+    }).isRequired,
   }
   static defaultProps = {
     name: ''
@@ -48,7 +52,7 @@ class Header extends React.Component {
             <Icon icon={open ? 'arrow back' : 'menu'} />
           </a>
           <Typography type="title" color="inherit" className={classes.text}>
-            Page
+            {routeToLabel(this.props.match.path)}
           </Typography>
           <Button color="contrast" className={classes.button}>
             Login
