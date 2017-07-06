@@ -38,11 +38,12 @@ class Header extends React.Component {
   }
   render() {
     const { classes } = this.props;
+    const { open } = this.props.sidebar;
     return (
       <AppBar position="static" className={classes.root} >
         <Toolbar>
           <a onClick={this.toggle} role="button" tabIndex={0} className={classes.icon}>
-            <Icon icon="menu" />
+            <Icon icon={open ? 'arrow back' : 'menu'} />
           </a>
           <Typography type="title" color="inherit" className={classes.text}>
             Page
