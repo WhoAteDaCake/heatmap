@@ -1,27 +1,33 @@
 // @flow
 import React from 'react';
 import { Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import mapRoutes from '../../helpers/mapRoutes';
-import routes from '../../constants/routes';
-import Header from '../../components/Header';
-import Sidebar from '../../components/Sidebar';
+import mapRoutes from 'helpers/mapRoutes';
+import { withStyles, createStyleSheet } from 'helpers/material';
 
-export default function App() {
-  const container = {
+import routes from 'constants/routes';
+import Header from 'components/Header';
+import Sidebar from 'components/Sidebar';
+
+const styles = createStyleSheet('App', theme => ({
+  root: {
     display: 'flex',
     height: '100vh',
     padding: '0',
     boxOrient: 'horizontal'
-  };
-  const content = {
-    display: 'box',
+  },
+  content: {
+    display: 'flex',
     width: '100%',
-  };
+  },
+}));
+
+function App({ classes }) {
   return (
-    <div className="app" style={container}>
+    <div className={classes.root}>
       <Sidebar />
-      <div className="app__body" style={content}>
+      <div className={classes.content}>
         <Header />
         <Switch>
           {mapRoutes(routes)}
@@ -30,3 +36,13 @@ export default function App() {
     </div>
   );
 }
+
+App.propTypes = {
+  classes: PropTypes.shape({
+    root: PropTypes.string,
+    content: PropTypes.string,
+  }).isRequired
+};
+
+const styledClass = withStyles(styles)(App);
+export default styledClass;
