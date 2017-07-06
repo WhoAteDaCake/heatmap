@@ -35,5 +35,9 @@ if (module.hot) {
   module.hot.accept('./containers/App', () => {
     render();
   });
+  module.hot.accept('./reducers/index', () => {
+    const nextReducer = require('./reducers/index');
+    store.replaceReducer(nextReducer);
+  });
 }
 render();

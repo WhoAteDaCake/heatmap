@@ -2,8 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'helpers/material';
-import Icon from 'components/Icon';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { toggleSidebar } from 'actions/sidebar';
 
+import Icon from 'components/Icon';
 import HeaderStyles from 'styles/Header';
 
 class Header extends React.Component {
@@ -13,14 +16,22 @@ class Header extends React.Component {
       root: PropTypes.string,
       icon: PropTypes.string,
     }).isRequired,
+    sidebar: PropTypes.shape({
+      open: PropTypes.bool,
+    }).isRequired,
+    toggleSidebar: PropTypes.func.isRequired,
   }
   static defaultProps = {
     name: ''
   }
+  toggle = () => {
+    const { open } = this.props.sidebar;
+    this.props.toggleSidebar(open ? 'close' : 'open');
+  }
   render() {
-    console.log(this.props);
     return (
       <div id="header" className={this.props.classes.root}>
+        <button onClick={this.toggle}>change</button>
         <h1>
           <Icon icon="menu" />
           Hello {this.props.name}
@@ -29,5 +40,16 @@ class Header extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch: Dispatch<*>) => ({
+  toggleSidebar: toggleSidebar(dispatch),
+});
+
+const mapStateToProps = state => ({
+  sidebar: state.sidebar,
+});
+
 const styledClass = withStyles(HeaderStyles)(Header);
-export default styledClass;
+const routedClass = withRouter(styledClass);
+const connectedClass = connect(mapStateToProps, mapDispatchToProps)(routedClass);
+export default connectedClass;

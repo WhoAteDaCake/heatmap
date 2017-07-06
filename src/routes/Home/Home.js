@@ -7,28 +7,21 @@ import { addLike } from 'actions/index.js';
 import type { Dispatch } from 'redux';
 
 class Home extends Component {
-  static propTypes = {
-    user: PropTypes.shape({
-      likes: PropTypes.string
-    }).isRequired,
-    addLike: PropTypes.func.isRequired,
-  }
-  updateCount = () => {
-    this.props.addLike();
+  //eslint-disable-next-line
+  home() {
+    return 'home';
   }
   render() {
-    const { likes } = this.props.user;
     return (
-      <div className="home" style={{ padding: '10px' }}>
-        <div>Home page | Likes: {likes}</div>
-        <button onClick={this.updateCount}>Like</button>
+      <div>
+        <div>Home</div>
       </div>
     );
   }
 }
-const mapDispatchToProps = (dispatch: Dispatch<*>) => ({
-  addLike: addLike(dispatch),
-});
-const mapStateToProps = state => ({ user: state.user });
-const conenctedClass = connect(mapStateToProps, mapDispatchToProps)(Home);
-export default conenctedClass;
+// const mapDispatchToProps = (dispatch: Dispatch<*>) => ({
+//   addLike: addLike(dispatch),
+// });
+// const mapStateToProps = state => ({ user: state.user });
+// const conenctedClass = connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
