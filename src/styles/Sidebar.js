@@ -6,9 +6,14 @@ export default createStyleSheet('sidebar', theme => ({
     minWidth: '200px',
     width: '200px',
     boxFlex: '0',
-    fontFamily: 'sans-serif',
     backgroundColor: theme.palette.primary[600],
     color: theme.palette.primary[50],
     overflow: 'hidden'
+  },
+  list: {
+    color: 'white !important',
+    '& > h3': {
+      color: 'white'
+    }
   }
 }));
