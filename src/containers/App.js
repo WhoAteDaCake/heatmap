@@ -15,7 +15,8 @@ const styles = createStyleSheet('App', theme => ({
     display: 'flex',
     height: '100vh',
     padding: '0',
-    boxOrient: 'horizontal'
+    boxOrient: 'horizontal',
+    fontFamily: '"Roboto", sans-serif',
   },
   content: {
     display: 'flex',
