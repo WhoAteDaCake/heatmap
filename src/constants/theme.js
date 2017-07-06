@@ -24,7 +24,6 @@ const white = {
   A700: '#ffffff',
   'contrastDefaultColor': 'dark',
 };
-/* eslint-disable */
 const primary = {
   '50': '#e7e7e7',
   '100': '#c3c4c4',
@@ -40,7 +39,7 @@ const primary = {
   A200: '#3a96f3',
   A400: '#007dfa',
   A700: '#0070e0',
-  'contrastDefaultColor': 'light',
+  contrastDefaultColor: 'light',
 };
 
 const accent = {
@@ -58,10 +57,8 @@ const accent = {
   A200: '#dae9ff',
   A400: '#a7caff',
   A700: '#8ebaff',
-  'contrastDefaultColor': 'dark',
+  contrastDefaultColor: 'dark',
 };
-
-
 
 export default createMuiTheme({
   palette: createPalette({
