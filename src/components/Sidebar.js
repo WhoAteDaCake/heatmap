@@ -17,13 +17,63 @@ class Sidebar extends React.Component {
     classes: PropTypes.shape({
       root: PropTypes.string,
       list: PropTypes.string,
+      child: PropTypes.string,
     }).isRequired,
     open: PropTypes.bool.isRequired,
   }
   static defaultProps = {
-    name: 'pedro@spotlightdata.co.uk'
   }
+  state = {
+    filterText: ''
+  }
+
+  search = (e) => {
+    const value = e.target.value;
+    this.setState(prev => ({ filterText: value }));
+  }
+
+  renderButton = (item, index) => {
+    if (item.link.split('/').length === 2) {
+      return (
+        <ListItem button key={index}>
+          <Icon icon={item.icon} />
+          <ListItemText primary={item.name} className={this.props.classes.list} />
+        </ListItem>
+      );
+    }
+    return (
+      <ListItem button key={index} className={this.props.classes.child}>
+        <Icon icon={item.icon} />
+        <ListItemText primary={item.name} className={this.props.classes.list} />
+      </ListItem>
+    );
+  }
+  ;
+
+
   render() {
+    const buttonList = [
+      {
+        name: 'Home',
+        icon: 'home',
+        link: '/',
+      },
+      {
+        name: 'Projects',
+        icon: 'folder',
+        link: '/projects',
+      },
+      {
+        name: 'Project 1',
+        icon: 'folder_open',
+        link: '/projects/hi',
+      },
+      {
+        name: 'Settings',
+        icon: 'settings',
+        link: '/settings',
+      }
+    ];
     const { classes } = this.props;
     const mainClass = classnames({
       [classes.root]: true,
@@ -32,20 +82,13 @@ class Sidebar extends React.Component {
     return (
       <div className={mainClass}>
         <img src="logoWhite.png" alt="Logo" className={classes.img} />
-        <Input placeholder="Filter.." classes={{ input: classes.input, underline: classes.underline }} />
+        <Input onChange={this.search} placeholder="Filter.." classes={{ input: classes.input, underline: classes.underline }} />
         <List className={classes.list}>
-          <ListItem button>
-            <Icon icon="home" />
-            <ListItemText primary="Home" className={classes.list} />
-          </ListItem>
-          <ListItem button>
-            <Icon icon="folder" />
-            <ListItemText primary="Projects" className={classes.list} />
-          </ListItem>
-          <ListItem button>
-            <Icon icon="settings" />
-            <ListItemText primary="Settings" className={classes.list} />
-          </ListItem>
+          {
+            buttonList
+            .filter(str => str.name.toUpperCase().includes(this.state.filterText.toUpperCase()))
+            .map(this.renderButton)
+          }
         </List>
       </div>
     );

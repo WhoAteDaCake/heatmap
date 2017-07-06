@@ -37,10 +37,13 @@ export default createStyleSheet('sidebar', theme => ({
   },
   underline: {
     '&:before': {
-      backgroundColor: 'grey',
+      backgroundColor: theme.palette.primary[100],
     },
     '&:after': {
-      backgroundColor: 'grey',
+      backgroundColor: theme.palette.primary.A100,
     }
+  },
+  child: {
+    paddingLeft: '40px',
   }
 }));
