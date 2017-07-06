@@ -19,7 +19,7 @@ class Home extends Component {
   render() {
     const { likes } = this.props.user;
     return (
-      <div className="home">
+      <div className="home" style={{ padding: '10px' }}>
         <div>Home page | Likes: {likes}</div>
         <button onClick={this.updateCount}>Like</button>
       </div>
