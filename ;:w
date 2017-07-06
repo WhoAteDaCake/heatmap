@@ -2,12 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'helpers/material';
-// Change style import
-import style from 'styles/_template_';
+import style from 'styles/Sidebar';
+import SidebarItem from 'components/SidebarItem';
 
-// Change class name
-class Template extends React.Component {
-  // Change propTypes and defaults
+class Sidebar extends React.Component {
   static propTypes = {
     name: PropTypes.string,
     classes: PropTypes.shape({
@@ -15,16 +13,21 @@ class Template extends React.Component {
     }).isRequired,
   }
   static defaultProps = {
-    name: ''
+    name: 'pedro@spotlightdata.co.uk'
   }
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <h1> Hello {this.props.name} </h1>
+        <h1> Sidebar </h1>
+        <h3> {this.props.name} </h3>
+        <SidebarItem name="Home" icon="Home" />
+        <SidebarItem name="Projects" icon="Folder" />
+        <SidebarItem name="Settings" icon="Settings" />
+
       </div>
     );
   }
 }
-const styledClass = withStyles(style)(Template);
+const styledClass = withStyles(style)(Sidebar);
 export default styledClass;
