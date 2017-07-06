@@ -58,7 +58,7 @@ class Sidebar extends React.Component {
     this.setState(prev => ({ filterText: value }));
   }
 
-  renderButton = (item, index) => {
+  renderButton = (item: Object) => {
     const { list, child } = this.props.classes;
     const notChild = item.link.split('/').length === 2;
 
@@ -77,13 +77,13 @@ class Sidebar extends React.Component {
       [classes.root]: true,
       [`${classes.root}--active`]: open,
     });
-
+    const filter = filterByKey(filterText, 'name', this.renderButton);
     return (
       <div className={mainClass}>
         <img src="/static/imgs/logo-white.png" alt="Logo" className={classes.img} />
         <Input onChange={this.search} placeholder="Filter.." classes={{ input: classes.input, underline: classes.underline }} />
         <List className={classes.list}>
-          {R.map(this.renderButton, filterByKey(filterText, 'name', buttonList))}
+          {filter(buttonList)}
         </List>
       </div>
     );
