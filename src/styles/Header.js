@@ -1,13 +1,16 @@
 import { createStyleSheet } from 'helpers/material';
 
 export default createStyleSheet('Header', theme => ({
-  root: {
-    fontFamily: 'sans-serif',
-    padding: '10px',
-    display: 'flex',
-    height: '5em',
+  root: {},
+  text: {
+    fontWeight: 300,
+  },
+  button: {
+    marginLeft: 'auto',
   },
   icon: {
     marginRight: '20px',
+    outline: 'none',
+    cursor: 'pointer',
   }
 }));

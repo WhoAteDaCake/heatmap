@@ -3,25 +3,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'helpers/material';
 import style from 'styles/Icon.js';
+import classnames from 'classnames';
 
-// Change class name
 class Icon extends React.Component {
-  // Change propTypes and defaults
   static propTypes = {
     icon: PropTypes.string,
+    className: PropTypes.string,
     classes: PropTypes.shape({
       icon: PropTypes.string,
     }).isRequired,
   }
   static defaultProps = {
-    icon: 'error'
+    icon: 'error',
+    className: '',
   }
   render() {
-    const { classes } = this.props;
+    const { classes, className, icon } = this.props;
+    const mainClass = classnames(className, classes.icon, 'material-icons');
     return (
-      <i className={`material-icons ${this.props.classes.icon}`}>
-        {this.props.icon}
-      </i>
+      <i className={mainClass}>{icon.replace(/\s/g, '_')}</i>
     );
   }
 }

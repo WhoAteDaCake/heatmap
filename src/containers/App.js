@@ -18,10 +18,13 @@ const styles = createStyleSheet('App', theme => ({
     boxOrient: 'horizontal',
     fontFamily: '"Roboto", sans-serif',
   },
-  content: {
+  body: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
+  },
+  content: {
+    margin: '2em',
   },
 }));
 
@@ -29,11 +32,13 @@ function App({ classes }) {
   return (
     <div className={classes.root}>
       <Sidebar />
-      <div className={classes.content}>
+      <div className={classes.body} >
         <Header />
-        <Switch>
-          {mapRoutes(routes)}
-        </Switch>
+        <div className={classes.content} >
+          <Switch>
+            {mapRoutes(routes)}
+          </Switch>
+        </div>
       </div>
     </div>
   );
