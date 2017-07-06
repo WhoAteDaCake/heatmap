@@ -36,6 +36,8 @@ if (project.globals.DEV) {
   });
 }
 
+app.use(express.static('static'));
+
 app.get(/^.*\.((?!hot-update).)*\..*$/, (req, res) => publicFile(res, req.originalUrl));
 app.get(/\/static/, (req, res) =>
   publicFile(res, req.originalUrl.replace('/static', '/'))

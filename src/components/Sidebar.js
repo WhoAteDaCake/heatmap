@@ -6,10 +6,11 @@ import style from 'styles/Sidebar';
 import Icon from 'components/Icon';
 // $FlowIgnore
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+// $FlowIgnore
+import Input from 'material-ui/Input/Input';
 
 class Sidebar extends React.Component {
   static propTypes = {
-    name: PropTypes.string,
     classes: PropTypes.shape({
       root: PropTypes.string,
       list: PropTypes.string,
@@ -22,7 +23,8 @@ class Sidebar extends React.Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <h1 style={{ marginLeft: '20px' }}> Nanowire </h1>
+        <img src="logoWhite.png" alt="Logo" className={classes.img} />
+        <Input placeholder="Filter.." classes={{ input: classes.input, underline: classes.underline }} />
         <List className={classes.list}>
           <ListItem button>
             <Icon icon="home" />
