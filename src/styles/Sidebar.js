@@ -6,13 +6,14 @@ export default createStyleSheet('sidebar', theme => ({
     minWidth: '0',
     width: '0',
     boxFlex: '0',
-    backgroundColor: theme.palette.primary[300],
-    color: theme.palette.primary[50],
+    backgroundColor: theme.palette.accent[700],
+    color: theme.palette.accent[50],
     overflowX: 'hidden',
     transition: 'width 0.2s linear, min-width 0.2s linear',
     '&--active': {
       minWidth: '200px',
       width: '200px',
+      padding: '0.5em',
     },
   },
   img: {
@@ -37,10 +38,10 @@ export default createStyleSheet('sidebar', theme => ({
   },
   underline: {
     '&:before': {
-      backgroundColor: theme.palette.primary[100],
+      backgroundColor: theme.palette.accent[100],
     },
     '&:after': {
-      backgroundColor: theme.palette.primary.A100,
+      backgroundColor: theme.palette.accent.A100,
     }
   },
   child: {

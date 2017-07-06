@@ -1,9 +1,12 @@
 import { createStyleSheet } from 'helpers/material';
 
 export default createStyleSheet('Header', theme => ({
-  root: {},
+  root: {
+    background: 'white',
+  },
   text: {
     fontWeight: 300,
+    color: black,
   },
   button: {
     marginLeft: 'auto',

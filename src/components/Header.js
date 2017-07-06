@@ -54,7 +54,7 @@ class Header extends React.Component {
           <Typography type="title" color="inherit" className={classes.text}>
             {routeToLabel(this.props.match.path)}
           </Typography>
-          <Button color="contrast" className={classes.button}>
+          <Button className={classes.button}>
             Login
           </Button>
         </Toolbar>
