@@ -16,10 +16,10 @@ function keyExists(error: string): (object: Object, key: string) => void {
  */
 function createReducer(cases: Array<Function>, initialState = {}) {
   return (state = initialState, action) => {
-    if (!(action.type in cases)) {
+    if (typeof cases[action.type] === 'undefined') {
       return state;
     }
-    return cases[action.type](state, action);
+    return cases[action.type](Object.assign({}, state), action);
   };
 }
 /**
