@@ -18,6 +18,7 @@ import Button from 'material-ui/Button';
 
 import Icon from 'components/Icon';
 import HeaderStyles from 'styles/Header';
+import HeaderTitle from 'components/HeaderTitle';
 
 class Header extends React.Component {
   static propTypes = {
@@ -29,21 +30,14 @@ class Header extends React.Component {
       open: PropTypes.bool,
     }).isRequired,
     toggleSidebar: PropTypes.func.isRequired,
-    location: PropTypes.shape({
-      pathname: PropTypes.string,
-    }).isRequired,
-    // history: PropTypes.shape({
-    //   push: PropTypes.func,
-    // }).isRequired,
   }
-  static defaultProps = {
-    name: ''
-  }
+
   toggle = (e) => {
     e.preventDefault();
     const { open } = this.props.sidebar;
     this.props.toggleSidebar(open ? 'close' : 'open');
   }
+
   render() {
     const { classes } = this.props;
     const { open } = this.props.sidebar;
@@ -53,9 +47,9 @@ class Header extends React.Component {
           <a onClick={this.toggle} role="button" tabIndex={0} className={classes.icon}>
             <Icon icon={open ? 'arrow back' : 'menu'} />
           </a>
-          <Typography type="title" color="inherit" className={classes.text}>
-            {routeToLabel(this.props.location.pathname)}
-          </Typography>
+
+          <HeaderTitle className={classes.text} />
+
           <Button className={classes.button}>
             Login
           </Button>
