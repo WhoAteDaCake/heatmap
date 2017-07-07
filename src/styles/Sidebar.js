@@ -17,8 +17,8 @@ export default createStyleSheet('sidebar', theme => ({
     },
   },
   img: {
-    padding: '20px',
-    width: '160px',
+    padding: '27px',
+    width: '180px',
     height: 'auto',
   },
   list: {
