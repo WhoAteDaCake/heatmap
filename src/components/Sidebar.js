@@ -71,6 +71,31 @@ class Sidebar extends React.Component {
       icon: 'folder_open',
       link: '/projects/hi',
     },
+    {
+      name: 'Project 1',
+      icon: 'folder_open',
+      link: '/projects/hi',
+    },
+    {
+      name: 'Project 1',
+      icon: 'folder_open',
+      link: '/projects/hi',
+    },
+    {
+      name: 'Project 1',
+      icon: 'folder_open',
+      link: '/projects/hi',
+    },
+    {
+      name: 'Project 1',
+      icon: 'folder_open',
+      link: '/projects/hi',
+    },
+    {
+      name: 'Project 1',
+      icon: 'folder_open',
+      link: '/projects/hi',
+    },
   ])
 
   /**

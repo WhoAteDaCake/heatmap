@@ -77,11 +77,11 @@ export default createStyleSheet('sidebar', theme => ({
     color: theme.white[500],
   },
   open: {
-    maxHeight: 'auto',
-    overflow: 'hidden',
+    maxHeight: '2000px',
+    // overflow: 'hidden',
   },
   closed: {
-    overflow: 'hidden',
+    // overflow: 'hidden',
     margin: 0,
     padding: 0,
     maxHeight: 0,
