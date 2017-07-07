@@ -27,15 +27,10 @@ const buttonList = [
     link: '/projects',
   },
   {
-    name: 'Project 1',
-    icon: 'folder_open',
-    link: '/projects/hi',
-  },
-  {
     name: 'Settings',
     icon: 'settings',
     link: '/settings',
-  }
+  },
 ];
 
 class Sidebar extends React.Component {
@@ -58,12 +53,29 @@ class Sidebar extends React.Component {
     this.setState(prev => ({ filterText: value }));
   }
 
+  loadProjects = () => ([
+    {
+      name: 'Project 1',
+      icon: 'folder_open',
+      link: '/projects/hi',
+    },
+  ])
+
   renderButton = (item: Object) => {
     const { list, child } = this.props.classes;
     const notChild = item.link.split('/').length === 2;
+    let orderValue = 0;
+    if (item.link.split('/')[1] === '') {
+      orderValue = 0;
+    } else if (item.link.split('/')[1] === 'projects') {
+      orderValue = 1;
+    } else if (item.link.split('/')[1] === 'settings') {
+      orderValue = 2;
+    }
+
 
     return (
-      <ListItem button key={shortid.generate()} className={notChild ? '' : child}>
+      <ListItem button key={shortid.generate()} className={notChild ? '' : child} style={{ order: orderValue }}>
         <Icon icon={item.icon} />
         <ListItemText primary={item.name} className={list} />
       </ListItem>
@@ -83,7 +95,7 @@ class Sidebar extends React.Component {
         <img src="/static/imgs/logo-white.png" alt="Logo" className={classes.img} />
         <Input onChange={this.search} placeholder="Filter.." classes={{ input: classes.input, underline: classes.underline }} />
         <List className={classes.list}>
-          {filter(buttonList)}
+          {filter(buttonList.concat(this.loadProjects()))}
         </List>
       </div>
     );
