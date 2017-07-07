@@ -36,10 +36,10 @@ export default createStyleSheet('sidebar', theme => ({
     }
   },
   input: {
-    width: '160px',
+    width: '180px',
     color: 'white',
     borderBottomColor: 'white',
-    margin: '0px 20px',
+    margin: '0px 32px',
   },
   underline: {
     '&:before': {
