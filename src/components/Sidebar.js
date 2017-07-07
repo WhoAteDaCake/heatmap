@@ -45,12 +45,13 @@ class Sidebar extends React.Component {
   static defaultProps = {
   }
   state = {
-    filterText: ''
+    filterText: '',
+    projectsOpen: 'false'
   }
 
   search = (e) => {
     const value = e.target.value;
-    this.setState(prev => ({ filterText: value }));
+    this.setState(prev => ({ filterText: value, projectsOpen: prev.projectsOpen }));
   }
 
   loadProjects = () => ([
@@ -95,7 +96,9 @@ class Sidebar extends React.Component {
         <img src="/static/imgs/logo-white.png" alt="Logo" className={classes.img} />
         <Input onChange={this.search} placeholder="Filter.." classes={{ input: classes.input, underline: classes.underline }} />
         <List className={classes.list}>
-          {filter(buttonList.concat(this.loadProjects()))}
+          {filter(
+            (!this.state.projectsOpen || this.state.filterText !== '') ? buttonList.concat(this.loadProjects()) : buttonList
+          )}
         </List>
       </div>
     );
