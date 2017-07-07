@@ -73,6 +73,7 @@ export default createStyleSheet('sidebar', theme => ({
     top: 0,
   },
   subRoot: {
+    padding: '0',
     color: theme.white[500],
   },
   open: {
