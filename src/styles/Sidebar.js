@@ -27,15 +27,21 @@ export default createStyleSheet('sidebar', theme => ({
     color: 'white !important',
     overflowX: 'hidden',
     fontSize: '10px',
-    '& > div > i': {
-      fontSize: '20px',
+    '& > a > div': {
+      '& > i': {
+        fontSize: '20px',
+        color: 'white',
+      },
+      '& > div > h3': {
+        color: 'white',
+        'letter-spacing': '0.1em',
+        fontFamily: '"Roboto", sans-serif',
+        fontSize: '15px',
+      },
+      '& > span': {
+        color: 'white',
+      }
     },
-    '& > h3': {
-      color: 'white',
-      'letter-spacing': '0.1em',
-      fontFamily: '"Roboto", sans-serif',
-      fontSize: '15px',
-    }
   },
   input: {
     width: '180px',

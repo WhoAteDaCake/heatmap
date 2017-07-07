@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'helpers/material';
 import { filterByKey } from 'helpers/array';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import R from 'ramda';
 import shortid from 'shortid';
@@ -88,19 +89,28 @@ class Sidebar extends React.Component {
     let extra = '';
     if (item.secondary) {
       extra = (
-        <a role="button" tabIndex="0" onClick={this.toggleProjects}>
+        <span role="button" tabIndex="0" onClick={this.toggleProjects}>
           <Icon icon="keyboard_arrow_down" className={this.state.projectsOpen ? this.props.classes.rotate : ''} />
-        </a>
+        </span>
       );
     }
 
 
     return (
-      <ListItem button component="a" href={item.link} key={shortid.generate()} className={notChild ? '' : child} style={{ order: orderValue }}>
-        <Icon icon={item.icon} />
-        <ListItemText primary={item.name} className={list} />
-        { extra }
-      </ListItem>
+      <Link
+        to={item.link}
+        key={shortid.generate()}
+        className={notChild ? '' : child}
+      >
+        <ListItem
+          button
+          style={{ order: orderValue }}
+        >
+          <Icon icon={item.icon} />
+            <ListItemText primary={item.name} className={list} />
+          { extra }
+        </ListItem>
+      </Link>
     );
   }
 

@@ -10,7 +10,6 @@ const routes = [
   }, {
     path: '/projects',
     component: Projects,
-    exact: true,
     name: 'Projects'
   },
 ];

@@ -29,9 +29,12 @@ class Header extends React.Component {
       open: PropTypes.bool,
     }).isRequired,
     toggleSidebar: PropTypes.func.isRequired,
-    match: PropTypes.shape({
-      path: PropTypes.string,
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
     }).isRequired,
+    // history: PropTypes.shape({
+    //   push: PropTypes.func,
+    // }).isRequired,
   }
   static defaultProps = {
     name: ''
@@ -44,7 +47,6 @@ class Header extends React.Component {
   render() {
     const { classes } = this.props;
     const { open } = this.props.sidebar;
-    console.log(this.props);
     return (
       <AppBar position="static" className={classes.root} >
         <Toolbar>
@@ -52,7 +54,7 @@ class Header extends React.Component {
             <Icon icon={open ? 'arrow back' : 'menu'} />
           </a>
           <Typography type="title" color="inherit" className={classes.text}>
-            {routeToLabel(this.props.match.path)}
+            {routeToLabel(this.props.location.pathname)}
           </Typography>
           <Button className={classes.button}>
             Login

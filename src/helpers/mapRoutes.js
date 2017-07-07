@@ -12,10 +12,8 @@ function RouteWithSubRoutes(route: Object): React$Element<*> {
   return (
     <Route
       path={route.path}
-      exact
-      render={props => (
-        <route.component {...props} routes={route.routes} />
-      )}
+      exact={route.exact || false}
+      render={props => <route.component exact {...props} routes={route.routes} />}
     />
   );
 }
