@@ -65,7 +65,6 @@ export default createMuiTheme({
   palette: createPalette({
     primary, // Purple and green play nicely together.
     accent,
-    white,
     error: red,
   }),
   white,

@@ -61,9 +61,18 @@ class Sidebar extends React.Component {
   renderButton = (item: Object) => {
     const { list, child } = this.props.classes;
     const notChild = item.link.split('/').length === 2;
+    let orderValue = 0;
+    if (item.link.split('/')[1] === '') {
+      orderValue = 0;
+    } else if (item.link.split('/')[1] === 'projects') {
+      orderValue = 1;
+    } else if (item.link.split('/')[1] === 'settings') {
+      orderValue = 2;
+    }
+
 
     return (
-      <ListItem button key={shortid.generate()} className={notChild ? '' : child}>
+      <ListItem button key={shortid.generate()} className={notChild ? '' : child} style={{ order: orderValue }}>
         <Icon icon={item.icon} />
         <ListItemText primary={item.name} className={list} />
       </ListItem>

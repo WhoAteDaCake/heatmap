@@ -22,6 +22,8 @@ export default createStyleSheet('sidebar', theme => ({
     height: 'auto',
   },
   list: {
+    display: 'flex',
+    flexDirection: 'column',
     color: 'white !important',
     overflowX: 'hidden',
     fontSize: '10px',
@@ -42,11 +44,14 @@ export default createStyleSheet('sidebar', theme => ({
     margin: '0px 32px',
   },
   underline: {
+    '&:hover:not([class^="-disabled-"]):before': {
+      backgroundColor: `${theme.palette.accent[200]} !important`,
+    },
     '&:before': {
-      backgroundColor: theme.palette.accent[100],
+      backgroundColor: theme.white[300],
     },
     '&:after': {
-      backgroundColor: theme.palette.accent.A100,
+      backgroundColor: theme.palette.primary.A100,
     }
   },
   child: {
