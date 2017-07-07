@@ -129,7 +129,7 @@ class Sidebar extends React.Component {
     });
     const filter = filterByKey(filterText, 'name', this.renderButton);
     return (
-      <div className={mainClass}>
+      <div className={mainClass} id="sidebar">
         <img src="/static/imgs/logo-white.png" alt="Logo" className={classes.img} />
         <Input onChange={this.search} placeholder="Filter.." classes={{ input: classes.input, underline: classes.underline }} />
         <List className={classes.list}>
