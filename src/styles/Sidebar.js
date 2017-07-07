@@ -78,8 +78,10 @@ export default createStyleSheet('sidebar', theme => ({
   },
   open: {
     maxHeight: 'auto',
+    overflow: 'hidden',
   },
   closed: {
+    overflow: 'hidden',
     margin: 0,
     padding: 0,
     maxHeight: 0,
