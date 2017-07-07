@@ -1,21 +1,33 @@
+// @flow
 import axios from 'axios';
+import createDebug from 'helpers/debug';
 
-import till from './till';
+const { BASE_URI } = process.env;
+const baseURL = BASE_URI || 'http://localhost';
+const debug = createDebug('fetch:wrap');
 
-const baseURL = `${process.env.IR_BACKEND_BASE_URI}/v1`;
-// NOTES add error handling
+type FetchResp = {
+  error: ?Object,
+  resp: ?Object,
+};
 /**
- * Wraps the http request
- * @param {object} cfg
+ * Wraps a promise so no try/catch is required
  */
-export default async function fetchWrap(cfg) {
+const till = (p: Promise<*>): Promise<FetchResp> =>
+  p.then(resp => ({ error: null, resp }))
+  .catch(error => ({ error, resp: null }));
+
+/**
+ * Wraps the axios requests so custom back-end url can be used across requests
+ */
+export default async function fetchWrap(cfg: Object): Promise<*> {
   const config = Object.assign(cfg, { baseURL });
   const { error, resp } = await till(axios(config));
-  if (process.env.NODE_ENV === 'development' && error) {
-    console.error(error);
+  if (error) {
+    debug(error);
   }
   return {
     error,
-    resp: resp.data,
+    resp: resp ? resp.data : resp,
   };
 }
