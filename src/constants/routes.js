@@ -1,4 +1,4 @@
-import Home from 'routes/Home/Home';
+import Home from 'routes/Home';
 
 const routes = [
   {
