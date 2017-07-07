@@ -60,5 +60,11 @@ export default createStyleSheet('sidebar', theme => ({
   rotate: {
     transitionDuration: '0.2s',
     transform: 'rotate(-90deg)',
-  }
+  },
+  fadeEnter: {
+    top: '100px',
+  },
+  fadeEnterActive: {
+    top: 0,
+  },
 }));

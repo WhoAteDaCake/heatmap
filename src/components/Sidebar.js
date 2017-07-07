@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import R from 'ramda';
 import shortid from 'shortid';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Icon from 'components/Icon';
 import style from 'styles/Sidebar';
@@ -50,7 +51,7 @@ class Sidebar extends React.Component {
   }
   state = {
     filterText: '',
-    projectsOpen: true,
+    projectsOpen: false,
   }
 
   search = (e) => {
@@ -77,26 +78,19 @@ class Sidebar extends React.Component {
   renderButton = (item: Object) => {
     const { list, child } = this.props.classes;
     const notChild = item.link.split('/').length === 2;
-    let orderValue = 0;
-    if (item.link.split('/')[1] === '') {
-      orderValue = 0;
-    } else if (item.link.split('/')[1] === 'projects') {
-      orderValue = 1;
-    } else if (item.link.split('/')[1] === 'settings') {
-      orderValue = 2;
-    }
+    const buttons = ['', 'projects', 'settings'];
     let extra = '';
     if (item.secondary) {
       extra = (
-        <a role="button" tabIndex="0" onClick={this.toggleProjects}>
+        <span role="button" tabIndex="0" onClick={this.toggleProjects}>
           <Icon icon="keyboard_arrow_down" className={this.state.projectsOpen ? this.props.classes.rotate : ''} />
-        </a>
+        </span>
       );
     }
 
 
     return (
-      <ListItem button component="a" href={item.link} key={shortid.generate()} className={notChild ? '' : child} style={{ order: orderValue }}>
+      <ListItem button component="a" href={item.link} key={shortid.generate()} className={notChild ? '' : child}>
         <Icon icon={item.icon} />
         <ListItemText primary={item.name} className={list} />
         { extra }
@@ -117,9 +111,12 @@ class Sidebar extends React.Component {
         <img src="/static/imgs/logo-white.png" alt="Logo" className={classes.img} />
         <Input onChange={this.search} placeholder="Filter.." classes={{ input: classes.input, underline: classes.underline }} />
         <List className={classes.list}>
-          {filter(
-            (this.state.projectsOpen || this.state.filterText !== '') ? buttonList.concat(this.loadProjects()) : buttonList
-          )}
+            {filter([buttonList[0]])}
+            {filter([buttonList[1]])}
+              {filter(
+                (this.state.projectsOpen || this.state.filterText !== '') ? this.loadProjects() : ''
+              )}
+            {filter([buttonList[2]])}
         </List>
       </div>
     );
