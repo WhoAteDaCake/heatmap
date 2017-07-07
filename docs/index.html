@@ -4,7 +4,6 @@
   <meta charset='utf-8' />
   <title>nanowire-front-end 1.0.0 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
-  <link href='static/css/animations.css' type='text/css' rel='stylesheet' />
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
   <link href='assets/github.css' type='text/css' rel='stylesheet' />
@@ -29,6 +28,36 @@
                   href='#togglesidebar'
                   class="">
                   toggleSidebar
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#loadprojects'
+                  class="">
+                  loadProjects
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#toggleprojects'
+                  class="">
+                  toggleProjects
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#renderbutton'
+                  class="">
+                  renderButton
                   
                 </a>
                 
@@ -119,6 +148,26 @@
                   href='#routetolabel'
                   class="">
                   routeToLabel
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#'
+                  class="">
+                  
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#'
+                  class="">
+                  
                   
                 </a>
                 
@@ -222,6 +271,195 @@
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
       <code>function (side: sidebarState): void</code>
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='loadprojects'>
+      loadProjects
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Returns an array of objects containing the information for the projects</p>
+
+
+  <div class='pre p1 fill-light mt0'>loadProjects</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>any</code>:
+        [
+Object
+]
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='toggleprojects'>
+      toggleProjects
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Toggles the openProject state, this will allow the sidebar to show a list
+of all projects. Take in considerations projects will be visible regardless
+if there is any text on the filter input</p>
+
+
+  <div class='pre p1 fill-light mt0'>toggleProjects</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>e</span> <code class='quiet'>(any)</code>
+	    :Event
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='renderbutton'>
+      renderButton
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Renders a sidebar button based on a simple JSON schema</p>
+
+
+  <div class='pre p1 fill-light mt0'>renderButton</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>item</span> <code class='quiet'>(any)</code>
+	    A JSON object containng the button information(refer to buttonList)
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>any</code>:
+        Sidebar item(list item)
+
+      
     
   
 
@@ -592,7 +830,7 @@ Should be used instead of console.log</p>
   <p>Will map route and sub-routes</p>
 
 
-  <div class='pre p1 fill-light mt0'>new RouteWithSubRoutes(route: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
+  <div class='pre p1 fill-light mt0'>new RouteWithSubRoutes(route: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): React$Element&#x3C;any></div>
   
   
 
@@ -609,7 +847,7 @@ Should be used instead of console.log</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>route</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
+            <span class='code bold'>route</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
 	    
           </div>
           
@@ -623,10 +861,7 @@ Should be used instead of console.log</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
-        
-
-      
+      <code>React$Element&#x3C;any></code>
     
   
 
@@ -837,6 +1072,108 @@ Should be used instead of console.log</p>
       <div class='py1 quiet mt1 prose-big'>Returns</div>
       <code>any</code>
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id=''>
+      
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Copyright (c) 2015-present, Facebook, Inc.
+All rights reserved.</p>
+<p>This source code is licensed under the BSD-style license found in the
+LICENSE file in the root directory of this source tree. An additional grant
+of patent rights can be found in the PATENTS file in the same directory.</p>
+
+
+  <div class='pre p1 fill-light mt0'></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id=''>
+      
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Copyright (c) 2015-present, Facebook, Inc.
+All rights reserved.</p>
+<p>This source code is licensed under the BSD-style license found in the
+LICENSE file in the root directory of this source tree. An additional grant
+of patent rights can be found in the PATENTS file in the same directory.</p>
+
+
+  <div class='pre p1 fill-light mt0'></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
   
 
   

@@ -60,32 +60,12 @@ class Sidebar extends React.Component {
     this.setState(prev => ({ filterText: value, projectsOpen: prev.projectsOpen }));
   }
 
+  /**
+   * Returns an array of objects containing the information for the projects
+   * @returns [Object]
+   */
   loadProjects = () => ([
-    {
-      name: 'Project 1',
-      icon: 'folder_open',
-      link: '/projects/hi',
-    },
-    {
-      name: 'Project 1',
-      icon: 'folder_open',
-      link: '/projects/hi',
-    },
-    {
-      name: 'Project 1',
-      icon: 'folder_open',
-      link: '/projects/hi',
-    },
-    {
-      name: 'Project 1',
-      icon: 'folder_open',
-      link: '/projects/hi',
-    },
-    {
-      name: 'Project 1',
-      icon: 'folder_open',
-      link: '/projects/hi',
-    },
+    // Temporary function
     {
       name: 'Project 1',
       icon: 'folder_open',
@@ -93,6 +73,11 @@ class Sidebar extends React.Component {
     },
   ])
 
+  /**
+   * Toggles the openProject state, this will allow the sidebar to show a list
+   * of all projects. Take in considerations projects will be visible regardless
+   * if there is any text on the filter input
+   */
   toggleProjects = (e) => {
     e.preventDefault();
     this.setState(prev => ({
@@ -101,6 +86,11 @@ class Sidebar extends React.Component {
     }));
   }
 
+  /**
+   * Renders a sidebar button based on a simple JSON schema
+   * @param item A JSON object containng the button information(refer to buttonList)
+   * @returns Sidebar item(list item)
+   */
   renderButton = (item: Object) => {
     const { list, child } = this.props.classes;
     const notChild = item.link.split('/').length === 2;
