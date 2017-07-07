@@ -37,11 +37,11 @@ function App({ classes }) {
       <Header />
       <div className={classes.body} >
         <Sidebar />
-        <div className={classes.content} >
-          <Switch>
-            {mapRoutes(routes)}
-          </Switch>
-        </div>
+          <div className={classes.content} >
+            <Switch>
+                {mapRoutes(routes)}
+            </Switch>
+          </div>
       </div>
     </div>
   );
