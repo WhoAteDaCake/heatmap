@@ -64,7 +64,6 @@ export default createStyleSheet('sidebar', theme => ({
     paddingLeft: '40px',
   },
   rotate: {
-    transitionDuration: '0.2s',
     transform: 'rotate(-90deg)',
   },
   fadeEnter: {
