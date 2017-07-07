@@ -32,12 +32,13 @@ class HeaderTitle extends React.Component {
   componentDidMount() {
     this.unlisten = this.props.history.listen(this.updateHeaderTitle);
   }
-  // Need this placeHolder else an error is thrown
-  unlisten = () => {}
 
-  componentDidUnMount() {
+  componentWillUnmount() {
     this.unlisten();
   }
+
+  // Need this placeHolder else an error is thrown
+  unlisten = () => {}
 
   updateHeaderTitle = (location) => {
     if (location.pathname !== this.state.pathname) {

@@ -1,9 +1,40 @@
 {
-  "presets" : ["stage-2","react","es2016"],
-  "plugins": ["transform-class-properties", "transform-flow-strip-types"],
+  "presets": [
+    "stage-2",
+    "react",
+    "es2016"
+  ],
+  "plugins": [
+    "transform-class-properties",
+    "transform-flow-strip-types",
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          "actions": "./actions",
+          "constants": "./constants",
+          "components": "./components",
+          "containers": "./containers",
+          "helpers": "./helpers",
+          "reducers": "./reducers",
+          "routes": "./routes",
+          "store": "./store",
+          "styles": "./styles"
+        }
+      }
+    ]
+  ],
   "env": {
     "test": {
-      "presets": ["es2015", "react", "stage-0"]
+      "presets": [
+        "es2015",
+        "react",
+        "stage-0"
+      ]
     }
   }
 }
+
