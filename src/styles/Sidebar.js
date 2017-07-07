@@ -73,4 +73,15 @@ export default createStyleSheet('sidebar', theme => ({
   fadeEnterActive: {
     top: 0,
   },
+  subRoot: {
+    color: theme.white[500],
+  },
+  open: {
+    maxHeight: 'auto',
+  },
+  closed: {
+    margin: 0,
+    padding: 0,
+    maxHeight: 0,
+  },
 }));

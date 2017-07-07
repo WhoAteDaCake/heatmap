@@ -1,11 +1,6 @@
-.fade-enter{
-    position:relative;
-    opacity:0;
-    top:100px;
+.animated{
+    -webkit-transition-duration:0.2s;
+    -moz-transition-duration:0.2s;
+    transition-duration:0.2s;
 }
 
-.fade-enter-active{
-    position:relative;
-    opacity:1;
-    top:100px;
-}

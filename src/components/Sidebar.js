@@ -66,6 +66,31 @@ class Sidebar extends React.Component {
       icon: 'folder_open',
       link: '/projects/hi',
     },
+    {
+      name: 'Project 1',
+      icon: 'folder_open',
+      link: '/projects/hi',
+    },
+    {
+      name: 'Project 1',
+      icon: 'folder_open',
+      link: '/projects/hi',
+    },
+    {
+      name: 'Project 1',
+      icon: 'folder_open',
+      link: '/projects/hi',
+    },
+    {
+      name: 'Project 1',
+      icon: 'folder_open',
+      link: '/projects/hi',
+    },
+    {
+      name: 'Project 1',
+      icon: 'folder_open',
+      link: '/projects/hi',
+    },
   ])
 
   toggleProjects = (e) => {
@@ -84,7 +109,7 @@ class Sidebar extends React.Component {
     if (item.secondary) {
       extra = (
         <span role="button" tabIndex="0" onClick={this.toggleProjects}>
-          <Icon icon="keyboard_arrow_down" className={this.state.projectsOpen ? this.props.classes.rotate : ''} />
+          <Icon icon="keyboard_arrow_down" className={`${this.state.projectsOpen ? this.props.classes.rotate : ''} animated`} />
         </span>
       );
     }
@@ -96,7 +121,7 @@ class Sidebar extends React.Component {
         key={shortid.generate()}
         className={notChild ? '' : child}
       >
-        <ListItem button >
+        <ListItem button className="animated">
           <Icon icon={item.icon} />
             <ListItemText primary={item.name} className={list} />
           { extra }
@@ -120,12 +145,19 @@ class Sidebar extends React.Component {
         <List className={classes.list}>
             {filter([buttonList[0]])}
             {filter([buttonList[1]])}
+            <List
+              className={`${classes.list} ${(this.state.projectsOpen || this.state.filterText !== '') ? classes.open : classes.closed} animated`}
+              classes={{
+                root: classes.subRoot,
+              }}
+            >
               {filter(
-                (this.state.projectsOpen || this.state.filterText !== '') ? this.loadProjects() : ''
+                 this.loadProjects()
               )}
+            </List>
             {filter([buttonList[2]])}
-        </List>
-      </div>
+          </List>
+        </div>
     );
   }
 }
