@@ -16,7 +16,7 @@ function keyExists(error: string): (object: Object, key: string) => void {
  */
 function createReducer(cases: Array<Function>, initialState = {}) {
   return (state = initialState, action) => {
-    if (!cases.includes(action.type)) {
+    if (!(action.type in cases)) {
       return state;
     }
     return cases[action.type](state, action);
