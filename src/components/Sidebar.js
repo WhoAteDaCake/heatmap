@@ -11,7 +11,7 @@ import shortid from 'shortid';
 import Icon from 'components/Icon';
 import style from 'styles/Sidebar';
 // $FlowIgnore
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import List, { ListItem, ListItemIcon, ListItemText, ListItemSecondaryAction } from 'material-ui/List';
 // $FlowIgnore
 import Input from 'material-ui/Input/Input';
 
@@ -20,16 +20,19 @@ const buttonList = [
     name: 'Home',
     icon: 'home',
     link: '/',
+    secondary: false,
   },
   {
     name: 'Projects',
     icon: 'folder',
     link: '/projects',
+    secondary: true,
   },
   {
     name: 'Settings',
     icon: 'settings',
     link: '/settings',
+    secondary: false,
   },
 ];
 
@@ -39,18 +42,20 @@ class Sidebar extends React.Component {
       root: PropTypes.string,
       list: PropTypes.string,
       child: PropTypes.string,
+      rotate: PropTypes.string,
     }).isRequired,
     open: PropTypes.bool.isRequired,
   }
   static defaultProps = {
   }
   state = {
-    filterText: ''
+    filterText: '',
+    projectsOpen: true,
   }
 
   search = (e) => {
     const value = e.target.value;
-    this.setState(prev => ({ filterText: value }));
+    this.setState(prev => ({ filterText: value, projectsOpen: prev.projectsOpen }));
   }
 
   loadProjects = () => ([
@@ -60,6 +65,14 @@ class Sidebar extends React.Component {
       link: '/projects/hi',
     },
   ])
+
+  toggleProjects = (e) => {
+    e.preventDefault();
+    this.setState(prev => ({
+      filterText: prev.filterText,
+      projectsOpen: !prev.projectsOpen
+    }));
+  }
 
   renderButton = (item: Object) => {
     const { list, child } = this.props.classes;
@@ -72,12 +85,21 @@ class Sidebar extends React.Component {
     } else if (item.link.split('/')[1] === 'settings') {
       orderValue = 2;
     }
+    let extra = '';
+    if (item.secondary) {
+      extra = (
+        <a role="button" tabIndex="0" onClick={this.toggleProjects}>
+          <Icon icon="keyboard_arrow_down" className={this.state.projectsOpen ? this.props.classes.rotate : ''} />
+        </a>
+      );
+    }
 
 
     return (
-      <ListItem button key={shortid.generate()} className={notChild ? '' : child} style={{ order: orderValue }}>
+      <ListItem button component="a" href={item.link} key={shortid.generate()} className={notChild ? '' : child} style={{ order: orderValue }}>
         <Icon icon={item.icon} />
         <ListItemText primary={item.name} className={list} />
+        { extra }
       </ListItem>
     );
   }
@@ -95,7 +117,9 @@ class Sidebar extends React.Component {
         <img src="/static/imgs/logo-white.png" alt="Logo" className={classes.img} />
         <Input onChange={this.search} placeholder="Filter.." classes={{ input: classes.input, underline: classes.underline }} />
         <List className={classes.list}>
-          {filter(buttonList.concat(this.loadProjects()))}
+          {filter(
+            (this.state.projectsOpen || this.state.filterText !== '') ? buttonList.concat(this.loadProjects()) : buttonList
+          )}
         </List>
       </div>
     );
