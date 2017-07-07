@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'helpers/material';
 import { filterByKey } from 'helpers/array';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import R from 'ramda';
 import shortid from 'shortid';
@@ -90,11 +91,17 @@ class Sidebar extends React.Component {
 
 
     return (
-      <ListItem button component="a" href={item.link} key={shortid.generate()} className={notChild ? '' : child}>
-        <Icon icon={item.icon} />
-        <ListItemText primary={item.name} className={list} />
-        { extra }
-      </ListItem>
+      <Link
+        to={item.link}
+        key={shortid.generate()}
+        className={notChild ? '' : child}
+      >
+        <ListItem button >
+          <Icon icon={item.icon} />
+            <ListItemText primary={item.name} className={list} />
+          { extra }
+        </ListItem>
+      </Link>
     );
   }
 
