@@ -42,7 +42,7 @@ const webpackConfig = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        HOST: JSON.stringify(process.env.HOST),
+        BASE_URI: JSON.stringify(process.env.BASE_URI),
       },
     }),
   ],

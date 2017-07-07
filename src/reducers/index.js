@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import applyReducer from 'helpers/applyReducer';
+import applyReducer from './applyReducer';
 
 import user from './user';
 import sidebar from './sidebar';

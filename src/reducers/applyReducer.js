@@ -13,19 +13,13 @@ function keyExists(error: string): (object: Object, key: string) => void {
 /**
  * Creates a reducer middleware
  * Takes action containing type
- * @param {object} cases
- * @param {object} initialState
- * @return {function}
- *   @param {object} state
- *   @param {action} object
- *   @return {object}
  */
-function createReducer(cases, initialState = {}) {
+function createReducer(cases: Array<Function>, initialState = {}) {
   return (state = initialState, action) => {
-    if (typeof cases[action.type] === 'undefined') {
+    if (!cases.includes(action.type)) {
       return state;
     }
-    return cases[action.type](Object.assign({}, state), action);
+    return cases[action.type](state, action);
   };
 }
 /**

@@ -10,7 +10,7 @@ export function filterByKey(
   fn: Function
 ): Function {
   // $FlowIgnore does not have definition yet
-  const containsWord = R.useWith(R.contains, [R.toUpper])(req);
-  const contains = R.propSatisfies(containsWord, key);
-  return R.compose(R.map(fn), R.filter(contains));
+  const findWord = R.useWith(R.contains, [R.toUpper])(req);
+  const propContains = R.propSatisfies(findWord, key);
+  return R.compose(R.map(fn), R.filter(propContains));
 }

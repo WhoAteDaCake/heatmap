@@ -14,7 +14,7 @@
     "NODE_ENV": "development",
     "DEBUG": "server*,webpack*",
     "DEBUG_COLORS": true,
-    "HOST": "localhost"
+    "BASE_URI": "http://35.187.105.249:3000/v1"
   },
   "ext": "js json"
 }

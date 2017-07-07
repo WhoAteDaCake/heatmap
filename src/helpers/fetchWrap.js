@@ -10,17 +10,18 @@ type FetchResp = {
   error: ?Object,
   resp: ?Object,
 };
+type ReqPromise = Promise<FetchResp>;
 /**
  * Wraps a promise so no try/catch is required
  */
-const till = (p: Promise<*>): Promise<FetchResp> =>
+const till = (p: Promise<*>): ReqPromise =>
   p.then(resp => ({ error: null, resp }))
   .catch(error => ({ error, resp: null }));
 
 /**
  * Wraps the axios requests so custom back-end url can be used across requests
  */
-export default async function fetchWrap(cfg: Object): Promise<*> {
+export default async function fetchWrap(cfg: Object): ReqPromise {
   const config = Object.assign(cfg, { baseURL });
   const { error, resp } = await till(axios(config));
   if (error) {

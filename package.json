@@ -17,7 +17,7 @@
         "NODE_ENV": "production",
         "DEBUG": "server:*,webpack:*",
         "DEBUG_COLORS": true,
-        "HOST": "localhost"
+        "BASE_URI": "http://35.187.105.249:3000/v1"
       }
     },
     "build:dev": {
