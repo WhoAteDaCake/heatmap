@@ -42,6 +42,7 @@ class Sidebar extends React.Component {
       root: PropTypes.string,
       list: PropTypes.string,
       child: PropTypes.string,
+      rotate: PropTypes.string,
     }).isRequired,
     open: PropTypes.bool.isRequired,
   }
@@ -65,6 +66,14 @@ class Sidebar extends React.Component {
     },
   ])
 
+  toggleProjects = (e) => {
+    e.preventDefault();
+    this.setState(prev => ({
+      filterText: prev.filterText,
+      projectsOpen: !prev.projectsOpen
+    }));
+  }
+
   renderButton = (item: Object) => {
     const { list, child } = this.props.classes;
     const notChild = item.link.split('/').length === 2;
@@ -79,12 +88,9 @@ class Sidebar extends React.Component {
     let extra = '';
     if (item.secondary) {
       extra = (
-        <Icon
-          icon="keyboard_arrow_down"
-          style={{
-            transform: [{ rotate: '-90deg' }],
-          }}
-        />
+        <a role="button" tabIndex="0" onClick={this.toggleProjects}>
+          <Icon icon="keyboard_arrow_down" className={this.state.projectsOpen ? this.props.classes.rotate : ''} />
+        </a>
       );
     }
 
