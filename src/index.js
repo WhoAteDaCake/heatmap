@@ -1,43 +1,33 @@
 // @flow
-import React from 'react';
-import ReactDom from 'react-dom';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
-// $FlowIgnore
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-import theme from 'constants/theme';
-import createDebugger from 'helpers/debug';
-import App from './containers/App';
-import store from './store';
-
-const debug = createDebugger('root:mount');
-
-const MOUNT_NODE: HTMLElement | null = document.getElementById('root');
-
-if (MOUNT_NODE === null) {
-  debug('Mount node is not a valid DOM element');
-}
-
-function render() {
-  ReactDom.render(
-    <Provider store={store}>
-      <Router>
-        <MuiThemeProvider theme={theme}>
-          <App />
-        </MuiThemeProvider>
-      </Router>
-    </Provider>
-  , MOUNT_NODE);
-}
+import HeatMap from './heatmap';
 
 if (module.hot) {
-  module.hot.accept('./containers/App', () => {
-    render();
-  });
-  module.hot.accept('./reducers/index', () => {
-    const nextReducer = require('./reducers/index');
-    store.replaceReducer(nextReducer);
-  });
+  module.hot.accept('./heatmap', window.location.reload);
 }
-render();
+window.onload = () => {
+  const canvas = document.createElement('canvas');
+  const w = 200;
+  const h = 200;
+  // canvas.style.width = '80px';
+  // canvas.style.height = '80px';
+  canvas.height = h;
+  canvas.width = w;
+  const body = document.body;
+  if (body !== null) {
+    body.appendChild(canvas);
+  }
+  const options = {
+    canvas,
+    scale: [0, 1],
+    height: h,
+    width: w,
+  };
+  const heatMap = new HeatMap(options);
+  heatMap.setRandomPoints(7);
+  const t0 = performance.now();
+  heatMap.drawLayers().then((t1) => {
+    console.log(`Took ${t1 - t0} to paint`);
+  });
+  window.heatMap = heatMap;
+  // console.log(heatMap.colorFromValue(0));
+};
