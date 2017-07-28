@@ -8,7 +8,6 @@ import R from 'ramda';
 
 import colorToObj from './colorConvert.js';
 import { inverseDistance } from './math';
-import { vertexShaderSource, fragmentShaderSource } from './shaders';
 // eslint-disable-next-line
 const Worker = require('worker-loader!./worker');
 
@@ -106,104 +105,20 @@ export default class HeatMap {
       });
     }
   }
-  // Need the bind here because we get length error as ramda uses this internally
-  // colorFromValue = (scale)(v: number) =>
-  //   R.memoize(R.compose(colorToObj, this.colorScale))(v);
-
-  // changeColorAt = (i: number, value: number, grid: Array<number>): Array<number> => {
-  //   const color = this.colorFromValue(value);
-  //   const nGrid = grid;
-  //   // console.log(color);
-  //   nGrid[i] = color[0];
-  //   nGrid[i + 1] = color[1];
-  //   nGrid[i + 2] = color[2];
-  //   return nGrid;
-  // }
-  // add drawPoints method
-  // drawLayers = (): Promise<*> => new Promise((res, rej) => {
-  //   const { points, changeColorAt } = this;
-  //   if (points.length < 2) {
-  //     rej('Heat mapping requires at least 2 points');
-  //   }
-
-  //   const { gl, height, width } = this;
-  //   const img = gl.getImageData(0, 0, width, height);
-  //   // 4 array members for each rgba color
-  //   const gridWidth = width * 4;
-  //   let grid = img.data;
-  //   let row = 0;
-
-  //   // Uses requestAnimation frame so that the process does not freeze
-  //   // grid = this.changeColorAt(4, 1, grid);
-  //   function paintRow(): any {
-  //     if (row === height) {
-  //       return res(performance.now());
-  //     }
-  //     for (let i = 0; i < gridWidth; i += 4) {
-  //       const index = i + (row * gridWidth);
-  //       const x = i / 4;
-  //       const value = inverseDistance(points, x, row);
-  //       grid = changeColorAt(index, value, grid);
-  //       // debugger;
-  //     }
-  //     row += 1;
-  //     img.data.set(grid);
-  //     gl.putImageData(img, 0, 0);
-  //     return requestAnimationFrame(paintRow);
-  //   }
-  //   requestAnimationFrame(paintRow);
-  // });
   drawLayers = (): Promise<*> => new Promise((res, rej) => {
-    const { points } = this;
-    if (points.length < 2) {
-      rej('Heat mapping requires at least 2 points');
-    }
-
-    const { gl, height, width } = this;
+    const { height, width, points, gl } = this;
     const img = gl.getImageData(0, 0, width, height);
-    // 4 array members for each rgba color
-    const gridWidth = width * 4;
-    const grid = img.data;
 
-    // Uses requestAnimation frame so that the process does not freeze
-    // grid = this.changeColorAt(4, 1, grid);
     this.worker.onmessage = (e) => {
-      img.data.set(e.data);
+      img.data.set(new Uint8ClampedArray(e.data));
       gl.putImageData(img, 0, 0);
-      return res(performance.now());
+      res(performance.now());
     };
+
     this.worker.postMessage({
+      points,
       height,
       width,
-      grid,
-      gridWidth,
-      points,
     });
-    // for (let row = 0; row < height; row += 1) {
-    //   for (let i = 0; i < gridWidth; i += 4) {
-    //     const index = i + (row * gridWidth);
-    //     const x = i / 4;
-    //     const value = inverseDistance(points, x, row);
-    //     grid = changeColorAt(index, value, grid);
-    //     // debugger;
-    //   }
-    // }
-    // function paintRow(): any {
-    //   if (row === height) {
-    //     return res(performance.now());
-    //   }
-    //   for (let i = 0; i < gridWidth; i += 4) {
-    //     const index = i + (row * gridWidth);
-    //     const x = i / 4;
-    //     const value = inverseDistance(points, x, row);
-    //     grid = changeColorAt(index, value, grid);
-    //     // debugger;
-    //   }
-    //   row += 1;
-    //   img.data.set(grid);
-    //   gl.putImageData(img, 0, 0);
-    //   return requestAnimationFrame(paintRow);
-    // }
-    // requestAnimationFrame(paintRow);
   });
 }

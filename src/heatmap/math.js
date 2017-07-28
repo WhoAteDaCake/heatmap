@@ -1,31 +1,30 @@
 // @flow
 // $FlowIgnore
-import { find, propEq, both } from 'ramda';
 
 type Point = Object;
 type Points = Array<Point>
 
-const P = 2.5;
-const findPoint = (x: number, y: number) =>
-  find(both(propEq('x', x), propEq('y', y)));
+const P = 6;
 
-export function inverseDistance(points: Points, x: number, y: number): number {
-  const point = findPoint(x, y)(points);
-  if (typeof point !== 'undefined') {
-    return point.value;
-  }
-
-  // Minus squared
-  const mSQ = (v1, v2) => (v1 - v2) ** 2;
-  const bottomEq = (x1, y1) =>
-    (mSQ(x1, x) + mSQ(y1, y)) ** (P / 2);
-  const loop = fn => points.reduce(fn, 0);
-
-  const topRes = loop((count, pos) =>
-    count + (pos.value / bottomEq(pos.x, pos.y))
+const mSQ = (v1, v2) => (v1 - v2) ** 2;
+const bottomEq = (x, y, width) => ({ x: x1, y: y1 }) => {
+  const xDistance = Math.min(
+    mSQ(x1, x),
+    mSQ(x1, x + width),
+    mSQ(x1, x - width),
   );
-  const bottomRes = loop((count, pos) =>
-    count + (1 / bottomEq(pos.x, pos.y))
-  );
-  return topRes / bottomRes;
+  return (xDistance + mSQ(y1, y)) ** (P / 2);
+};
+
+export function distanceValues(points: Points, x: number, y: number, width: number) {
+  return points.map(bottomEq(x, y, width));
+}
+
+export function inverseDistance(points: Points, bottoms: Array<number>): number {
+  const summation = bottoms.reduce((sum, pos, i) => ({
+    top: sum.top + (points[i].value / pos),
+    bottom: sum.bottom + (1 / pos)
+  }), { top: 0, bottom: 0 });
+
+  return summation.top / summation.bottom;
 }

@@ -6,10 +6,9 @@ if (module.hot) {
 }
 window.onload = () => {
   const canvas = document.createElement('canvas');
-  const w = 200;
-  const h = 200;
-  // canvas.style.width = '80px';
-  // canvas.style.height = '80px';
+  const w = 100;
+  const h = 100;
+
   canvas.height = h;
   canvas.width = w;
   const body = document.body;
@@ -23,11 +22,10 @@ window.onload = () => {
     width: w,
   };
   const heatMap = new HeatMap(options);
-  heatMap.setRandomPoints(7);
+  heatMap.setRandomPoints(8);
   const t0 = performance.now();
   heatMap.drawLayers().then((t1) => {
     console.log(`Took ${t1 - t0} to paint`);
   });
   window.heatMap = heatMap;
-  // console.log(heatMap.colorFromValue(0));
 };
