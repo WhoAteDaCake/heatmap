@@ -6,10 +6,8 @@ import { scaleSequential } from 'd3-scale';
 // $FlowIgnore
 import R from 'ramda';
 
-import colorToObj from './colorConvert.js';
-import { inverseDistance } from './math';
 // eslint-disable-next-line
-const Worker = require('worker-loader!./worker');
+const Worker = require('worker-loader!../module/worker');
 
 type Point = Object | Array<number>;
 type ColorArr = Array<number>;
@@ -17,6 +15,9 @@ type ColorArr = Array<number>;
 function log(msg: string, type: string = 'log') {
   console[type](msg);
 }
+
+const rand = mod =>
+  parseInt((Math.random() * 10000) % mod, 10);
 
 export default class HeatMap {
   options: Object;
@@ -76,7 +77,10 @@ export default class HeatMap {
     this.height = height;
     this.width = width;
   }
-  setPoint(point: Point): void {
+  setPointValue(index: number, value: number) {
+    this.points[index].value = value;
+  }
+  setPoint = (point: Point) => {
     if (point instanceof Array) {
       this.points.push({
         x: point[0],
@@ -93,16 +97,20 @@ export default class HeatMap {
     }
     points.map(this.setPoint);
   }
-  setRandomPoints = (count: number): void => {
-    const rand = mod =>
-      parseInt((Math.random() * 10000) % mod, 10);
+  setRandomCoordinates = (count: number): void => {
     const { width, height } = this;
     for (let i = 0; i < count; i += 1) {
       this.setPoint({
         x: rand(this.width),
         y: rand(this.height),
-        value: rand(1000) / 1000,
+        value: 0,
       });
+    }
+  }
+  setRandomValues() {
+    const { length } = this.points;
+    for (let i = 0; i < length; i += 1) {
+      this.setPointValue(i, (rand(1000) % 10) / 10);
     }
   }
   drawLayers = (): Promise<*> => new Promise((res, rej) => {
@@ -111,6 +119,7 @@ export default class HeatMap {
 
     this.worker.onmessage = (e) => {
       img.data.set(new Uint8ClampedArray(e.data));
+      gl.scale(3, 3);
       gl.putImageData(img, 0, 0);
       res(performance.now());
     };

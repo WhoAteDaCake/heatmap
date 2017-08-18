@@ -19,10 +19,10 @@ if (project.globals.DEV) {
   const compiler = webpack(webpackConf);
 
   app.use(devMiddleWare(compiler, {
-    hot: true,
+    hot: false,
     publicPath: webpackConf.output.publicPath,
     reload: true,
-    noInfo: true,
+    noInfo: false,
     stats: {
       colors: true,
     },
