@@ -16,7 +16,7 @@ function pointsToCache(points) {
 
 
 function calculate(points, width, height) {
-  const grid = new Uint8Array(width * height);
+  const grid = new Uint16Array(width * height);
 
   for (let y = 0; y < height; y += 1) {
     for (let x = 0; x < width; x += 1) {

@@ -31,7 +31,8 @@ function initPoints() {
 function postMessage(points) {
   return new Promise((res, rej) => {
     worker.onmessage = (e) => {
-      res(new Uint8ClampedArray(e.data));
+      const arr = new Uint16Array(e.data);
+      res(arr);
     };
     worker.postMessage({
       points,
@@ -52,7 +53,12 @@ function findPoint(points, x, y) {
 
 window.onload = async () => {
   const grid = document.getElementById('root');
-  const p = initPoints();
+  // const p = initPoints();
+  const p = [
+    { x: 0, y: 0, value: 0.5 },
+    { x: 9, y: 0, value: 0 },
+    { x: 3, y: 9, value: 0.5 },
+  ];
   const pointData = await postMessage(p);
 
   for (let y = 0; y < h; y += 1) {
@@ -60,9 +66,12 @@ window.onload = async () => {
     const rowData = Array.from(pointData.slice(y * w, (y * w) + w));
 
     rowData
-      .map(v => (v / 255).toFixed(3))
-      .map((v, x) => {
+      .map((value, x) => {
+        const v = (value / 255).toFixed(3);
         let backgroundColor = 'white';
+        // if (x === 3 && y === 0) {
+        //   console.log(value, v);
+        // }
         if (findPoint(p, x, y)) {
           const colorVal = parseInt(Math.random() * 255, 10);
           backgroundColor = `rgb(${colorVal}, 155, 155)`;
