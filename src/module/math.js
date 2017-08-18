@@ -8,8 +8,8 @@ const mSQ = (v1, v2) => Math.pow((v1 - v2), BINARY_SWITCH);
 // To account for the bend
 const optimal = (v1, v2, scale) => Math.min(
   mSQ(v1, v2),
-  mSQ(v1, v2 + scale),
-  mSQ(v2, v2 - scale),
+  mSQ(v1, v2 + (scale - 1)),
+  mSQ(v1, v2 - (scale - 1)),
 );
 
 
