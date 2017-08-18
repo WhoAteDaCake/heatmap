@@ -1,90 +1,87 @@
 // @flow
 import HeatMap from './heatmap';
 
-if (module.hot) {
-  module.hot.accept('./heatmap', window.location.reload);
-}
+// eslint-disable-next-line
+const Worker = require('worker-loader!./module/worker');
 
-function delay(t) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, t);
-  });
-}
+const worker = new Worker();
+const w = 10;
+const h = 10;
 
-function loop(t, heatMap, canvas, canvas2) {
-  async function inner() {
-    await delay(t);
-    heatMap.setRandomValues();
-    const ts = performance.now();
-    await heatMap.drawLayers();
-    console.log(performance.now() - ts);
-    if (!window.stopLoop) {
-      // inner();
-    }
-  }
-  inner();
-}
 
-function makeCanvas(w, h) {
-  const canvas = document.createElement('canvas');
-  canvas.height = h;
-  canvas.width = w;
-  canvas.style.width = `${w}px`;
-  canvas.style.height = `${h}px`;
-  return canvas;
-}
-
-async function draw(heatMap, canvas, canvas2) {
-  // heatMap.setPoint([295, 5, 1]);
-  // heatMap.setPoint([5, 295, 0]);
-  // heatMap.setPoint([100, 0, 0.9]);
-  // heatMap.setPoint([50, 0, 0.5]);
-  // heatMap.setPoint([0, 0, 0.4]);
-  // heatMap.setPoint([150, 150, 0.3]);
-  let points = localStorage.getItem('points');
-
-  if (points === null || points === 'null') {
-    heatMap.setRandomCoordinates(24);
-    heatMap.setRandomValues();
-    points = JSON.stringify(heatMap.points);
-    localStorage.setItem('points', points);
-  }
-  // eslint-disable-next-line
-  heatMap.setPoints(JSON.parse(points));
-
-  const t0 = performance.now();
-  const t2 = await heatMap.drawLayers();
-  console.log(t2 - t0);
-
-  const ctx = canvas2.getContext('2d');
-  ctx.drawImage(canvas, 0, 0);
-}
-
-window.onload = async () => {
-  const w = 300;
-  const h = 300;
-
-  const canvas = makeCanvas(w, h);
-  const canvas2 = makeCanvas(w, h);
-
-  const body = document.body;
-  if (body !== null) {
-    body.appendChild(canvas);
-    body.appendChild(canvas2);
-  }
-
+function initPoints() {
   const options = {
-    canvas,
     scale: [0, 1],
     height: h,
     width: w,
   };
   const heatMap = new HeatMap(options);
-  draw(heatMap, canvas, canvas2);
+  let points = localStorage.getItem('points');
+
+  if (points === null || points === 'null') {
+    heatMap.setRandomCoordinates(h);
+    heatMap.setRandomValues();
+    points = JSON.stringify(heatMap.points);
+    localStorage.setItem('points', points);
+  }
   // eslint-disable-next-line
-  document.getElementById('redraw').onclick = () => {
-    localStorage.setItem('points', 'null');
-    window.location.reload();
-  };
-  window.heatMap = heatMap;
+  return JSON.parse(points);
+}
+
+function postMessage(points) {
+  return new Promise((res, rej) => {
+    worker.onmessage = (e) => {
+      res(new Uint8ClampedArray(e.data));
+    };
+    worker.postMessage({
+      points,
+      height: h,
+      width: w,
+    });
+  });
+}
+
+function findPoint(points, x, y) {
+  for (let i = 0; i < points.length; i += 1) {
+    if (points[i].x === x && points[i].y === y) {
+      return true;
+    }
+  }
+  return false;
+}
+
+window.onload = async () => {
+  const grid = document.getElementById('root');
+  const p = initPoints();
+  const pointData = await postMessage(p);
+
+  for (let y = 0; y < h; y += 1) {
+    const row = document.createElement('div');
+    const rowData = Array.from(pointData.slice(y * w, (y * w) + w));
+
+    rowData
+      .map(v => (v / 255).toFixed(3))
+      .map((v, x) => {
+        let backgroundColor = 'white';
+        if (findPoint(p, x, y)) {
+          const colorVal = parseInt(Math.random() * 255, 10);
+          backgroundColor = `rgb(${colorVal}, 155, 155)`;
+        }
+        const span = document.createElement('span');
+        span.textContent = v;
+        span.style.backgroundColor = backgroundColor;
+        return row.appendChild(span);
+      });
+
+    if (grid !== null) {
+      grid.appendChild(row);
+    }
+    // for (let x = 0; x < width; x += 1) {
+    // }
+  }
+};
+// eslint-disable-next-line
+document.getElementById('redraw').onclick = (e) => {
+  localStorage.setItem('points', 'null');
+  window.location.reload();
 };
